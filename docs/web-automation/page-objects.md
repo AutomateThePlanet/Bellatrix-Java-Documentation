@@ -28,10 +28,10 @@ public void purchaseRocketWithoutPageObjects() {
     app().navigate().to("http://demos.bellatrix.solutions/");
 
     // Home page elements
-    Select sortDropDown = app().create().byCss(Select.class, "[name$='orderby']");
+    Select sortDropDown = app().create().byNameEndingWith(Select.class, "orderby");
     Anchor protonMReadMoreButton = app().create().byInnerTextContaining(Anchor.class, "Read more");
-    Anchor addToCartFalcon9 = app().create().byCss(Anchor.class, "[data-product_id*='28'").toBeClickable();
-    Anchor viewCartButton = app().create().byCss(Anchor.class, "[class*='added_to_cart wc-forward']").toBeClickable();
+    Anchor addToCartFalcon9 = app().create().byAttributeContaining(Anchor.class, "data-product_id", "28").toBeClickable();
+    Anchor viewCartButton = app().create().byClassContaining(Anchor.class, "added_to_cart wc-forward").toBeClickable();
 
     // Home Page actions
     sortDropDown.selectByText("Sort by price: low to high");
@@ -42,12 +42,12 @@ public void purchaseRocketWithoutPageObjects() {
 
     // Cart page elements
     TextField couponCodeTextField = app().create().byId(TextField.class, "coupon_code");
-    Button applyCouponButton = app().create().byCss(Button.class, "[value*='Apply coupon']");
-    Div messageAlert = app().create().byCss(Div.class, "[class*='woocommerce-message']");
-    NumberInput quantityBox = app().create().byCss(NumberInput.class, "[clsss*='input-text qty text']");
-    Button updateCart = app().create().byCss(Button.class, "[clsss*='Update cart']").toBeClickable();
+    Button applyCouponButton = app().create().byValueContaining(Button.class, "Apply coupon");
+    Div messageAlert = app().create().byClassContaining(Div.class, "woocommerce-message");
+    NumberInput quantityBox = app().create().byClassContaining(NumberInput.class, "input-text qty text");
+    Button updateCart = app().create().byClassContaining(Button.class, "Update cart").toBeClickable();
     Span totalSpan = app().create().byXPath(Span.class, "//*[@class='order-total']//span");
-    Anchor proceedToCheckout = app().create().byCss(Anchor.class, "[class*='checkout-button button alt wc-forward']");
+    Anchor proceedToCheckout = app().create().byClassContaining(Anchor.class, "checkout-button button alt wc-forward");
 
     // Cart page actions
     couponCodeTextField.setText("happybirthday");
@@ -77,7 +77,7 @@ public void purchaseRocketWithoutPageObjects() {
     PhoneInput billingPhone = app().create().byId(PhoneInput.class, "billing_phone");
     EmailInput billingEmail = app().create().byId(EmailInput.class, "billing_email");
     CheckBox createAccountCheckBox = app().create().byId(CheckBox.class, "createaccount");
-    RadioButton checkPaymentsRadioButton = app().create().byCss(RadioButton.class, "[for*='payment_method_cheque']");
+    RadioButton checkPaymentsRadioButton = app().create().byAttributeContaining(RadioButton.class, "for", "payment_method_cheque");
 
     // Checkout page actions
     billingDetailsHeading.toBeVisible().waitToBe();
@@ -156,19 +156,19 @@ public class Map extends PageMap {
     }
 
     public Button applyCouponButton() {
-        return create().byCss(Button.class, "[value*='Apply coupon']");
+        return create().byValueContaining(Button.class, "Apply coupon");
     }
 
     public List<TextField> quantityBoxes() {
-        return create().allByCss(TextField.class, "[class*='input-text qty text']");
+        return create().allByClassContaining(TextField.class, "input-text qty text");
     }
 
     public Button updateCart() {
-        return create().byCss(Button.class, "[value*='Update cart']");
+        return create().byValueContaining(Button.class, "Update cart");
     }
 
     public Div messageAlert() {
-        return create().byCss(Div.class, "[class*='woocommerce-message']");
+        return create().allByClassContaining(Div.class, "woocommerce-message");
     }
 
     public Span totalSpan() {
@@ -176,7 +176,7 @@ public class Map extends PageMap {
     }
 
     public Button proceedToCheckout() {
-        return create().byCss(Button.class, "[class*='checkout-button button alt wc-forward']");
+        return create().allByClassContaining(Button.class, "checkout-button button alt wc-forward");
     }
 }
 ```
@@ -241,7 +241,7 @@ public TextField couponCodeTextField() {
 All elements are placed inside the file **Map** so that the declarations of your elements to be in a single place. It is convenient since if there is a change in some of the locators or elements types you can apply the fix only here. All elements are implements as properties.
 ```java
 public List<TextField> quantityBoxes() {
-    return create().allByCss(TextField.class, "[class*='input-text qty text']");
+    return create().allByClassContaining(TextField.class, "input-text qty text");
 }
 ```
 If you want to find multiple elements, you can use List<TComponent>.

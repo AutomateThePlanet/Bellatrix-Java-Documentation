@@ -22,15 +22,15 @@ public void assertCartPageFields() {
 
     Assert.assertEquals(couponCodeTextField.getPlaceholder(), "Coupon code");
 
-    Button applyCouponButton = app().create().byCss(Button.class, "[value*='Apply coupon']");
+    Button applyCouponButton = app().create().byValueContaining(Button.class, "Apply coupon");
 
     Assert.assertTrue(applyCouponButton.isVisible());
 
-    Div messageAlert = app().create().byCss(Div.class, "[class*=woocommerce-message]");
+    Div messageAlert = app().create().byClassContaining(Div.class, "woocommerce-message");
 
     Assert.assertFalse(messageAlert.isVisible());
 
-    Button updateCart = app().create().byCss(Button.class, "[value*='Update cart']");
+    Button updateCart = app().create().byValueContaining(Button.class, "Update cart");
 
     Assert.assertTrue(updateCart.isDisabled());
 
@@ -66,12 +66,12 @@ Actual   :false
 ```
 Cannot learn much about what happened.
 ```java
-Div messageAlert = app().create().byCss(Div.class, "[class*=woocommerce-message]");
+Div messageAlert = app().create().byClassContaining(Div.class, "woocommerce-message");
 Assert.assertFalse(messageAlert.isVisible());
 ```
 Since there are no validation errors, verify that the message div is not visible.
 ```java
-Button updateCart = app().create().byCss(Button.class, "[value*='Update cart']");
+Button updateCart = app().create().byValueContaining(Button.class, "Update cart");
 Assert.assertTrue(updateCart.isDisabled());
 ```
 We have not made any changes to the added products so the update cart button should be disabled.

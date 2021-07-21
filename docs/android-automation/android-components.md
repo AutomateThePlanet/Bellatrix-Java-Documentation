@@ -49,7 +49,7 @@ public void commonActionsWithAndroidControls() {
 
     Assert.assertTrue(label.isVisible());
 
-    var password = app().create().byDescription(PasswordInput.class, "passwordBox");
+    var password = app().create().byDescription(PasswordField.class, "passwordBox");
 
     var textField = app().create().byIdContaining(TextField.class, "edit");
 
@@ -115,10 +115,10 @@ Assert.assertTrue(label.isVisible());
 ```
 See if the element is visible or not using the **isPresent** property.
 ```java
-var password = app().create().byDescription(PasswordInput.class, "passwordBox");
+var password = app().create().byDescription(PasswordField.class, "passwordBox");
 password.setPassword("topsecret");
 ```
-Instead of using the non-meaningful method **sendKeys**, BELLATRIX gives you more readable tests through proper methods and properties names. In this case, we set the text in the password input field using the **setPassword** method and **setText** for regular text fields.
+Instead of using the non-meaningful method **sendKeys**, BELLATRIX gives you more readable tests through proper methods and properties names. In this case, we set the text in the password field using the **setPassword** method and **setText** for regular text fields.
 
 Full List of All Supported Android Controls
 ---------------------------------------
@@ -149,7 +149,7 @@ Image | same as Android Component
 ImageButton | click, getText, isDisabled
 Label | getText
 NumberInput | setNumber, getNumber, isDisabled
-PasswordInput | getPassword, setPassword, isDisabled
+PasswordField | getPassword, setPassword, isDisabled
 Progress | isDisabled
 RadioButton | click, isDisabled, isChecked, getText
 RadioGroup | clickByText, clickByIndex, getChecked, getAll

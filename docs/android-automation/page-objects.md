@@ -89,8 +89,8 @@ public class MainAndroidPage extends PageMap<Map, Asserts> {
         return create().byText(Label.class, "textColorPrimary");
     }
 
-    public PasswordInput password() {
-        return create().byIdContaining(PasswordInput.class, "edit2");
+    public PasswordField password() {
+        return create().byIdContaining(PasswordField.class, "edit2");
     }
 
     public TextField userName() {

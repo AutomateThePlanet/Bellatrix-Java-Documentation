@@ -52,6 +52,11 @@ You can access the WebDriver wrapped element through **getWrappedElement** and t
 Available create().by Methods
 ------------------------
 BELLATRIX extends the vanilla WebDriver selectors and give you additional ones.
+### create().byIdEndingWith ###
+```java
+app().create().byIdEndingWith(Anchor.class, "myIdSuffix");
+```
+Searches the component by ID ending with the locator.
 ### create().byTag ###
 ```java
 app().create().byTag(Anchor.class, "a");
@@ -67,6 +72,11 @@ Searches the component by its ID.
 app().create().byIdContaining(Button.class, "myIdMiddle");
 ```
 Searches the component by ID containing the specified text.
+### create().byValueContaining ###
+```java
+app().create().byValueContaining(Button.class, "pay");
+```
+Searches the component by value attribute containing the specified text.
 ### create().byXpath ###
 ```java
 app().create().byXpath(Button.class, "//*[@title='Add to cart']");
@@ -84,14 +94,29 @@ app().create().byLinkTextContaining(Anchor.class, "account");
 Searches the component by its link (href) if it contains specified value.
 ### create().byClass ###
 ```java
-app().create().byClass(Anchor.class, "ul.products");
+app().create().byClass(Anchor.class, "product selected");
 ```
 Searches the component by its CSS classes.
+### create().byClassContaining ###
+```java
+app().create().byClassContaining(Anchor.class, "selected");
+```
+Searches the component by its CSS classes containing the specified values.
 ### create().byInnerTextContaining ###
 ```java
 app().create().byInnerTextContaining(Div.class, "Showing all");
 ```
 Searches the component by its inner text content, including all child HTML components.
+### create().byNameEndingWith ###
+```java
+app().create().byNameEndingWith(SearchField.class, "a");
+```
+Searches the component by its name containing the specified text.
+### create().byAttributesContaining ###
+```java
+app().create().byAttributeContaining(Anchor.class, "data-product_id", "31");
+```
+Searches the component by some of its attribute containing the specified value.
 
 Find Multiple Components
 ----------------------
@@ -109,6 +134,11 @@ public void checkAllAddToCartButtons() {
 
 Available create().allBy Methods
 ------------------------
+### create().allByIdEndingWith ###
+```java
+app().create().allByIdEndingWith(Anchor.class, "myIdSuffix");
+```
+Searches the components by ID ending with the locator.
 ### create().allByTag ###
 ```java
 app().create().allByTag(Anchor.class, "a");
@@ -124,6 +154,11 @@ Searches the components by their ID.
 app().create().allByIdContaining(Button.class, "myIdMiddle");
 ```
 Searches the components by ID containing the specified text.
+### create().allByValueContaining ###
+```java
+app().create().allByValueContaining(Button.class, "pay");
+```
+Searches the components by value attribute containing the specified text.
 ### create().allByXpath ###
 ```java
 app().create().allByXpath(Button.class, "//*[@title='Add to cart']");
@@ -141,14 +176,29 @@ app().create().allByLinkTextContaining(Anchor.class, "account");
 Searches the components by their link (href) if it contains specified value.
 ### create().allByClass ###
 ```java
-app().create().allByClass(Anchor.class, "ul.products");
+app().create().allByClass(Anchor.class, "product selected");
 ```
 Searches the components by their CSS classes.
+### create().allByClassContaining ###
+```java
+app().create().allByClassContaining(Anchor.class, "selected");
+```
+Searches the components by their CSS classes containing the specified values.
 ### create().allByInnerTextContaining ###
 ```java
 app().create().allByInnerTextContaining(Div.class, "Showing all");
 ```
-Searches the components by their inner text content, including all child HTML elements.
+Searches the components by their inner text content, including all child HTML components.
+### create().allByNameEndingWith ###
+```java
+app().create().allByNameEndingWith(SearchField.class, "a");
+```
+Searches the components by their names containing the specified text.
+### create().allByAttributesContaining ###
+```java
+app().create().allByAttributeContaining(Anchor.class, "data-product_id", "31");
+```
+Searches the components by some of their attributes containing the specified value.
 
 Find Nested Components
 ----------------------
@@ -172,91 +222,146 @@ The first products row is located. Then search inside it for the first product i
 
 Available create Methods for Finding Nested Components
 ----------------------------------------------------
+### createByIdEndingWith ###
+```java
+component.createByIdEndingWith(Anchor.class, "myIdSuffix");
+```
+Searches the component by ID ending with the locator.
 ### createByTag ###
 ```java
-element.createByTag(Anchor.class, "a");
+component.createByTag(Anchor.class, "a");
 ```
-Searches the element by its tag.
+Searches the component by its tag.
 ### createById ###
 ```java
-element.createById(Button.class, "myId");
+component.createById(Button.class, "myId");
 ```
-Searches the element by its ID.
+Searches the component by its ID.
 ### createByIdContaining ###
 ```java
-element.createByIdContaining(Button.class, "myIdMiddle");
+component.createByIdContaining(Button.class, "myIdMiddle");
 ```
-Searches the element by ID containing the specified text.
+Searches the component by ID containing the specified text.
+### createByValueContaining ###
+```java
+component.createByValueContaining(Button.class, "pay");
+```
+Searches the component by ID containing the specified text.
 ### createByXpath ###
 ```java
-element.createByXpath(Button.class, "//*[@title='Add to cart']");
+component.createByXpath(Button.class, "//*[@title='Add to cart']");
 ```
-Searches the element by XPath locator.
+Searches the component by XPath locator.
 ### createByLinkText ###
 ```java
-element.createByLinkText(Anchor.class, "blog");
+component.createByLinkText(Anchor.class, "blog");
 ```
-Searches the element by its link (href).
+Searches the component by its link (href).
+### createByLinkTextContaining ###
+```java
+component.createByLinkTextContaining(Anchor.class, "blog");
+```
+Searches the component by its link (href) if it contains specified value.
 ### createByCss ###
 ```java
-element.createByCss(Anchor.class, "a[href*='falcon-9']");
+component.createByCss(Anchor.class, "a[href*='falcon-9']");
 ```
-Searches the element by its CSS selector.
+Searches the component by its CSS selector.
 ### createByClass ###
 ```java
-element.createByClass(Anchor.class, "ul.products");
+component.createByClass(Anchor.class, "product selected");
 ```
-Searches the element by its CSS classes.
+Searches the component by its CSS classes.
+### createByClassContaining ###
+```java
+component.createByClassContaining(Anchor.class, "selected");
+```
+Searches the component by its CSS classes.
 ### createByInnerTextContaining ###
 ```java
-element.createByInnerTextContaining(Div.class, "Showing all");
+component.createByInnerTextContaining(Div.class, "Showing all");
 ```
-Searches the element by its inner text content, including all child HTML elements.
+Searches the component by its inner text content, including all child HTML components.
+### createByNameEndingWith ###
+```java
+component.createByNameEndingWith(SearchField.class, "a");
+```
+Searches the component by its name containing the specified text.
+### createByAttributesContaining ###
+```java
+component.createByAttributeContaining(Anchor.class, "data-product_id", "31");
+```
+Searches the component by some of its attribute containing the specified value.
 
 Available createAll Methods for Finding Nested Components
 ----------------------------------------------------
+### createAllByIdEndingWith ###
+```java
+component.createAllByIdEndingWith(Anchor.class, "myIdSuffix");
+```
+Searches the components by ID ending with the locator.
 ### createAllByTag ###
 ```java
-element.createAllByTag(Anchor.class, "a");
+component.createAllByTag(Anchor.class, "a");
 ```
-Searches the elements by its tag.
+Searches the components by their tag.
 ### createAllById ###
 ```java
-element.createAllById(Button.class, "myId");
+component.createAllById(Button.class, "myId");
 ```
-Searches the elements by its ID.
+Searches the components by their ID.
 ### createAllByIdContaining ###
 ```java
-element.createAllByIdContaining(Button.class, "myIdMiddle");
+component.createAllByIdContaining(Button.class, "myIdMiddle");
 ```
-Searches the elements by ID containing the specified text.
+Searches the components by ID containing the specified text.
+### createAllByValueContaining ###
+```java
+component.createAllByValueContaining(Button.class, "pay");
+```
+Searches the components by ID containing the specified text.
 ### createAllByXpath ###
 ```java
-element.createAllByXpath(Button.class, "//*[@title='Add to cart']");
+component.createAllByXpath(Button.class, "//*[@title='Add to cart']");
 ```
-Searches the elements by XPath locator.
+Searches the components by XPath locator.
 ### createAllByLinkText ###
 ```java
-element.createAllByLinkText(Anchor.class, "blog");
+component.createAllByLinkText(Anchor.class, "blog");
 ```
-Searches the elements by its link (href).
+Searches the components by their link (href).
 ### createAllByLinkTextContaining ###
 ```java
-element.createAllByLinkTextContaining(Anchor.class, "account");
+component.createAllByLinkTextContaining(Anchor.class, "blog");
 ```
-Searches the elements by its link (href) if it contains specified value.
+Searches the components by their link (href) if it contains specified value.
 ### createAllByCss ###
 ```java
-element.createAllByCss(Anchor.class, "a[href*='product']");
+component.createAllByCss(Anchor.class, "a[href*='falcon-9']");
 ```
-Searches the elements by its CSS classes.
+Searches the components by their CSS selector.
 ### createAllByClass ###
 ```java
-element.createAllByClass(Anchor.class, "ul.products");
+component.createAllByClass(Anchor.class, "product selected");
 ```
-Searches the elements by its CSS classes.
+Searches the components by their CSS classes.
+### createAllByClassContaining ###
+```java
+component.createAllByClassContaining(Anchor.class, "selected");
+```
+Searches the components by their CSS classes.
 ### createAllByInnerTextContaining ###
 ```java
-element.createAllByInnerTextContaining(Div.class, "Showing all");
+component.createAllByInnerTextContaining(Div.class, "Showing all");
 ```
-Searches the elements by its inner text content, including all child HTML elements.
+Searches the components by their inner text content, including all child HTML components.
+### createAllByNameEndingWith ###
+```java
+component.createAllByNameEndingWith(SearchField.class, "a");
+```
+Searches the components by their name containing the specified text.
+### createAllByAttributesContaining ###
+```java
+component.createAllByAttributeContaining(Anchor.class, "data-product_id", "31");
+```
+Searches the components by some of their attribute containing the specified value.

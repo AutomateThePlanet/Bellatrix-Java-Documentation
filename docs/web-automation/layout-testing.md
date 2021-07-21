@@ -20,18 +20,18 @@ public class LayoutTestingTests extends WebTest {
     public void testPageLayout() {
         app().navigate().to("http://demos.bellatrix.solutions/");
 
-        Select sortDropDown = app().create().byCss(Select.class, "[name$='orderby']");
+        Select sortDropDown = app().create().byNameEndingWith(Select.class, "orderby");
         Anchor protonRocketAnchor =
-        app().create().byCss(Anchor.class, "[href*='/proton-rocket/']");
+        app().create().byAttributeContaining(Anchor.class, "href", "/proton-rocket/");
         Anchor protonMAnchor =
-        app().create().byCss(Anchor.class, "[href*='/proton-m/']");
+        app().create().byAttributeContaining(Anchor.class, "href", "/proton-m/");
         Anchor saturnVAnchor =
-        app().create().byCss(Anchor.class, "[href*='/saturn-v/']");
+        app().create().byAttributeContaining(Anchor.class, "href", "/saturn-v/");
         Anchor falconHeavyAnchor =
-        app().create().byCss(Anchor.class, "[href*='/falcon-heavy/']");
+        app().create().byAttributeContaining(Anchor.class, "href", "/falcon-heavy/");
         Anchor falcon9Anchor =
-        app().create().byCss(Anchor.class, "[href*='/falcon-9/']");
-        Div saturnVRating = saturnVAnchor.createByCss(Div.class, "[class*='star-rating']");
+        app().create().byAttributeContaining(Anchor.class, "href", "/falcon-9/");
+        Div saturnVRating = saturnVAnchor.createByClassContaining(Div.class, "star-rating");
 
         sortDropDown.above(protonRocketAnchor).validate();
 
@@ -95,7 +95,7 @@ Assert with the exact distance between them.
 
 All layout assertion methods throw AssertionError if the check is not successful with beautified troubleshooting message:
 ```
-Select (css = [name$='orderby']) should be above of Anchor (css = [href*='/proton-rocket/']) = 41 px
+Select (name ending with orderby) should be above of Anchor (href containing /proton-rocket/) = 41 px
 ```
 
 ```java

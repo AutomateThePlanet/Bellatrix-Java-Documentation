@@ -48,17 +48,37 @@ All Available toBe Methods
 ```java
 app().create().byLinkText(Anchor.class, "Blog").toExist();
 ```
-Waits for the element to exist on the page. BELLATRIX always does it by default. But if use another ToBe methods you need to add it again since you have to override the default behaviour.
+Waits for the component to exist on the page. BELLATRIX always does it by default. But if use another ToBe methods you need to add it again since you have to override the default behaviour.
 ### toBeVisible ###
 ```java
 app().create().byLinkText(Anchor.class, "Blog").toBeVisible();
 ```
-Waits for the element to be visible.
+Waits for the component to be visible.
 ### toBeClickable ###
 ```java
 app().create().byLinkText(Anchor.class, "Blog").toBeClickable();
 ```
-Waits for the element to be clickable (may be disabled at first).
+Waits for the component to be clickable (may be disabled at first).
+### toBeDisabled ###
+```java
+app().create().byLinkText(Anchor.class, "Blog").toBeDisabled();
+```
+Waits for the component to be disabled (may be clickable at first).
+### toHaveContent ###
+```java
+app().create().byLinkText(Anchor.class, "Blog").toBeDisabled();
+```
+Waits for the component to have some content in it. For example, some validation DIV or label.
+### toNotBeVisible ###
+```java
+app().create().byLinkText(Anchor.class, "Blog").toNotBeVisible();
+```
+Waits for the component to be invisible.
+### toNotExist ###
+```java
+app().create().byLinkText(Anchor.class, "Blog").toNotExist();
+```
+Waits for the component to disappear. Usually, we use in assertion methods.
 
 Configuration
 -------------

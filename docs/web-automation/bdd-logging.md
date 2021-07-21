@@ -16,12 +16,12 @@ Example
 public void purchaseRocketWithLogs() {
     app().navigate().to("http://demos.bellatrix.solutions/");
 
-    Select sortDropDown = app().create().byCss(Select.class, "[name$='orderby']");
+    Select sortDropDown = app().create().byNameEndingWith(Select.class, "orderby");
     Anchor protonMReadMoreButton = app().create().byInnerTextContaining(Anchor.class, "Read more");
     Anchor addToCartFalcon9 =
-    app().create().byCss(Anchor.class, "[data-product_id*='28'").toBeClickable();
+    app().create().byAttributeContaining(Anchor.class, "data-product_id", "28").toBeClickable();
     Anchor viewCartButton =
-    app().create().byCss(Anchor.class, "[class*='added_to_cart wc-forward']").toBeClickable();
+    app().create().byClassContaining(Anchor.class, "added_to_cart wc-forward").toBeClickable();
 
     sortDropDown.selectByText("Sort by price: low to high");
     protonMReadMoreButton.hover();
@@ -30,13 +30,13 @@ public void purchaseRocketWithLogs() {
     viewCartButton.click();
 
     TextField couponCodeTextField = app().create().byId(TextField.class, "coupon_code");
-    Button applyCouponButton = app().create().byCss(Button.class, "[value*='Apply coupon']");
-    Div messageAlert = app().create().byCss(Div.class, "[class*='woocommerce-message']");
-    NumberInput quantityBox = app().create().byCss(NumberInput.class, "[class*='input-text qty text']");
-    Button updateCart = app().create().byCss(Button.class, "[value*='Update cart']").toBeClickable();
+    Button applyCouponButton = app().create().byValueContaining(Button.class, "Apply coupon");
+    Div messageAlert = app().create().byClassContaining(Div.class, "woocommerce-message");
+    NumberInput quantityBox = app().create().byClassContaining(NumberInput.class, "input-text qty text");
+    Button updateCart = app().create().byValueContaining(Button.class, "Update cart").toBeClickable();
     Span totalSpan = app().create().byXPath(Span.class, "//*[@class='order-total']//span");
     Anchor proceedToCheckout =
-    app().create().byCss(Anchor.class, "[class*='checkout-button button alt wc-forward']");
+    app().create().byClassContaining(Anchor.class, "checkout-button button alt wc-forward");
 
     couponCodeTextField.setText("happybirthday");
     applyCouponButton.click();
@@ -64,7 +64,7 @@ public void purchaseRocketWithLogs() {
     EmailInput billingEmail = app().create().byId(EmailInput.class, "billing_email");
     CheckBox createAccountCheckBox = app().create().byId(CheckBox.class, "createaccount");
     RadioButton checkPaymentsRadioButton =
-    app().create().byCss(RadioButton.class, "[for*='payment_method_cheque']");
+    app().create().byAttributeContaining(RadioButton.class, "for", "payment_method_cheque");
 
     billingDetailsHeading.toBeVisible().waitToBe();
     showLogin.validateHrefIs("http://demos.bellatrix.solutions/checkout/#");
@@ -97,17 +97,17 @@ After the test is executed the following log is created:
 ```
 Start Test
 class = BDDLoggingTests name = purchaseRocketWithLogs
-selecting 'Sort by price: low to high' from Select (css = [name$='orderby'])
+selecting 'Sort by price: low to high' from Select (name ending with orderby)
 hovering Anchor (text containing Read more)
-focusing Anchor (css = [data-product_id*='28'])
-clicking Anchor (css = [data-product_id*='28'])
-clicking Anchor (css = [class*='added_to_cart wc-forward'])
+focusing Anchor (data-product_id containing 28)
+clicking Anchor (data-product_id containing 28)
+clicking Anchor (class containing added_to_cart wc-forward)
 typing 'happybirthday' into TextField (id = coupon_code)
-clicking Button (css = [value*='Apply coupon'])
-validating Div (css = [class*='woocommerce-message']) inner text is 'Coupon code applied successfully.'
+clicking Button (value containing Apply coupon)
+validating Div (class containing woocommerce-message) inner text is 'Coupon code applied successfully.'
 setting '0' into NumberInput (class = input-text qty text)
 setting '2' into NumberInput (class = input-text qty text)
-clicking Button (css = [value*='Update cart'])
+clicking Button (value containing Update cart)
 validating Span (xpath = //*[@class='order-total']//span) inner text is '95.00€'
 clicking Anchor (class = checkout-button button alt wc-forward)
 validating Anchor (text containing Click here to login) href is 'http://demos.bellatrix.solutions/checkout/#'
@@ -127,7 +127,7 @@ typing '1000' into TextField (id = billing_postcode)
 typing '+00359894646464' into TextField (id = billing_phone)
 typing 'info@bellatrix.solutions' into TextField (id = billing_email)
 checking CheckBox (id = createaccount)
-clicking RadioButton (css = [for*='payment_method_cheque'])
+clicking RadioButton (for containing payment_method_cheque)
 ```
 
 You can notice that since we use **validate** assertions not the regular one they also present in the log:

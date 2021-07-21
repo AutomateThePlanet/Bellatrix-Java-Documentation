@@ -20,7 +20,7 @@ public class JavaScriptServiceTests extends WebTest {
         app().script().execute("document.getElementById('username').value = 'BELLATRIX';");
 
         app().create().byId(PasswordInput.class, "password").setPassword("Gorgeous");
-        var button = app().create().byCss(Button.class, "//*[class*='woocommerce-Button button']");
+        var button = app().create().byClassContaining(Button.class, "woocommerce-Button button");
         
         app().script().execute("arguments[0].click();", button);
     }
@@ -30,7 +30,7 @@ public class JavaScriptServiceTests extends WebTest {
     public void getElementStyle() {
         app().navigate().to("http://demos.bellatrix.solutions/my-account/");
 
-        var resultsCount = app().create().byCss(WebComponent.class, "//*[class*='woocommerce-result-count']");
+        var resultsCount = app().create().byClassContaining(WebComponent.class, "woocommerce-result-count");
 
         String fontSize = app().script().execute("return arguments[0].style.font-size", resultsCount.getWrappedElement());
 

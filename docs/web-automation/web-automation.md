@@ -18,8 +18,8 @@ Perform an action against an element only when a specific condition is true. Wai
 ### Cookies Service ###
 You need to make sure that you have navigated to the desired web page. Get all cookies, Get a specific cookie by name, Delete all cookies, Delete a specific cookie by name. Add a new cookie. [**Learn more**](cookies-service).
 
-### 30+ web components ###
-Includes only the actions that you should be able to do with the specific control and nothing more.
+### 30+ Web Components ###
+Includes only the actions that you should be able to do with the specific componet and nothing more.
 [**Learn more**](web-components).
 
 ### Web Extendability ###

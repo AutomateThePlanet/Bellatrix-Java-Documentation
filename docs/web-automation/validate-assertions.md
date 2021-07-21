@@ -22,15 +22,15 @@ public void assertValidateCartPageFields() {
 
     couponCodeTextField.validatePlaceholderIs("Coupon code");
 
-    Button applyCouponButton = app().create().byCss(Button.class, "[value*='Apply coupon']");
+    Button applyCouponButton = app().create().byValueContaining(Button.class, "Apply coupon");
 
     applyCouponButton.validateIsVisible();
 
-    Div messageAlert = app().create().byCss(Div.class, "[class*=woocommerce-message]");
+    Div messageAlert = app().create().byClassContaining(Div.class, "woocommerce-message");
 
     messageAlert.validateNotVisible();
 
-    Button updateCart = app().create().byCss(Button.class, "[value*='Update cart']");
+    Button updateCart = app().create().byValueContaining(Button.class, "Update cart");
 
     updateCart.validateIsDisabled();
 
@@ -74,12 +74,12 @@ The control should be visible but wasn't. The test failed on URL: http://demos.b
 ```
 To all exception messages, the current URL is displayed, which improves the troubleshooting.
 ```java
-Div messageAlert = app().create().byCss(Div.class, "[class*=woocommerce-message]");
+Div messageAlert = app().create().byClassContaining(Div.class, "woocommerce-message");
 messageAlert.validateNotVisible();
 ```
 Since there are no validation errors, verify that the message div is not visible.
 ```java
-Button updateCart = app().create().byCss(Button.class, "[value*='Update cart']");
+Button updateCart = app().create().byValueContaining(Button.class, "Update cart");
 updateCart.validateIsDisabled();
 ```
 No changes are made to the added products so the update cart button should be disabled.

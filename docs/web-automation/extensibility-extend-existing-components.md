@@ -17,16 +17,16 @@ public class ExtendExistingComponent extends WebTest {
     public void PurchaseRocket() {
         app().navigate().to("http://demos.bellatrix.solutions/");
 
-        Select sortDropDown = app().create().byCss(Select.class, "[name$='orderby']");
+        Select sortDropDown = app().create().byNameEndingWith(Select.class, "orderby");
         Anchor protonMReadMoreButton = app().create().byInnerTextContaining(Anchor.class, "Read more");
-        Anchor addToCartFalcon9 = app().create().byCss(Anchor.class, "[data-product_id*='28']").toBeClickable();
-        Anchor viewCartButton = app().create().byCss(Anchor.class, "[class*='added_to_cart wc-forward']").toBeClickable();
+        Anchor addToCartFalcon9 = app().create().byAttributeContaining(Anchor.class, "data-product_id", "28").toBeClickable();
+        Anchor viewCartButton = app().create().byClassContaining(Anchor.class, "added_to_cart wc-forward").toBeClickable();
         TextField couponCodeTextField = app().create().byId(TextField.class, "coupon_code");
-        Button applyCouponButton = app().create().byCss(Button.class, "[value*='Apply coupon']");
-        NumberInput quantityBox = app().create().byCss(NumberInput.class, "[class*='input-text qty text']");
-        Div messageAlert = app().create().byCss(Div.class, "[class*='woocommerce-message']");
-        Button updateCart = app().create().byCss(Button.class, "[value*='Update cart']").toBeClickable();
-        ExtendedButton proceedToCheckout = app().create().byCss(ExtendedButton.class, "[class*='checkout-button button alt wc-forward']");
+        Button applyCouponButton = app().create().byValueContaining(Button.class, "Apply coupon");
+        NumberInput quantityBox = app().create().byClassContaining(NumberInput.class, "input-text qty text");
+        Div messageAlert = app().create().byClassContaining(Div.class, "woocommerce-message");
+        Button updateCart = app().create().byValueContaining(Button.class, "Update cart").toBeClickable();
+        ExtendedButton proceedToCheckout = app().create().byClassContaining(ExtendedButton.class, "checkout-button button alt wc-forward");
         Heading billingDetailsHeading = app().create().byInnerTextContaining(Heading.class, "Billing details");
         Span totalSpan = app().create().byXPath(Span.class, "//*[@class='order-total']//span");
 
@@ -71,7 +71,7 @@ public class ExtendedButton extends Button {
 The way of extending an existing component is to create a child component. Extend the component you need. In this case, two methods are added to the standard **Button** component. Next in your tests, use the **ExtendedButton** instead of regular **Button** to have access to these methods.
 The same strategy can be used to create a completely new component that BELLATRIX does not provide. You need to extend the **WebComponent** as a base class.
 ```java
-ExtendedButton proceedToCheckout = app().create().byCss(ExtendedButton.class, "[class*='checkout-button button alt wc-forward']");
+ExtendedButton proceedToCheckout = app().create().byClassContaining(ExtendedButton.class, "checkout-button button alt wc-forward");
 ```
 Instead of the regular button, we create the **ExtendedButton**, this way we can use its new methods.
 ```java

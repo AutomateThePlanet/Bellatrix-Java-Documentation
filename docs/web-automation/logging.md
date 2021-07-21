@@ -17,10 +17,10 @@ public class LoggingTests extends WebTest {
     public void addCustomMessagesToLog() {
         app().navigate().to("http://demos.bellatrix.solutions/");
 
-        Select sortDropDown = app().create().byCss(Select.class, "[name$='orderby']");
+        Select sortDropDown = app().create().byNameEndingWith(Select.class, "orderby");
         Anchor protonMReadMoreButton = app().create().byInnerTextContaining(Anchor.class, "Read more");
-        Anchor addToCartFalcon9 = app().create().byCss(Anchor.class, "[data-product_id*='28']").toBeClickable();
-        Anchor viewCartButton = addToCartFalcon9.createByCss(Anchor.class, "[class*='added_to_cart wc-forward']").toBeClickable();
+        Anchor addToCartFalcon9 = app().create().byAttributeContaining(Anchor.class, "data-product_id", "28").toBeClickable();
+        Anchor viewCartButton = addToCartFalcon9.createByClassContaining(Anchor.class, "added_to_cart wc-forward").toBeClickable();
 
         sortDropDown.selectByText("Sort by price: low to high");
         protonMReadMoreButton.hover();
@@ -46,10 +46,10 @@ Generated Log, as you can see the above custom message is added to the log.
 ```
 Start Test
 Class = LoggingTests Name = AddCustomMessagesToLog
-selecting 'Sort by price: low to high' from Select (css = [name$='orderby'])
+selecting 'Sort by price: low to high' from Select (name ending with orderby)
 hovering Anchor (text containing Read more)
 before adding Falcon 9 rocket to cart.
-focusing Anchor (css = [data-product_id*='28'])
-clicking Anchor (css = [data-product_id*='28'])
-clicking Anchor (css = Class = [class*='added_to_cart wc-forward'])
+focusing Anchor (data-product_id containing 28)
+clicking Anchor (data-product_id containing 28)
+clicking Anchor (class containing added_to_cart wc-forward)
 ```

@@ -86,20 +86,20 @@ public class ElementActionHooksTests extends WebTest {
     public void purchaseRocketWithGloballyOverriddenMethods() {
         app().navigate().to("http://demos.bellatrix.solutions/");
 
-        Select sortDropDown = app().create().byCss(Select.class, "[name$='orderby']");
+        Select sortDropDown = app().create().byNameEndingWith(Select.class, "orderby");
         Anchor protonMReadMoreButton =
                 app().create().byInnerTextContaining(Anchor.class, "Read more");
         Anchor addToCartFalcon9 =
-                app().create().byCss(Anchor.class, "[data-product_id*='28'").toBeClickable();
+                app().create().byAttributeContaining(Anchor.class, "data-product_id", "28").toBeClickable();
         Anchor viewCartButton =
-                app().create().byCss(Anchor.class, "[class*='added_to_cart wc-forward']").toBeClickable();
+                app().create().byClassContaining(Anchor.class, "added_to_cart wc-forward").toBeClickable();
         TextField couponCodeTextField = app().create().byId(TextField.class, "coupon_code");
-        Button applyCouponButton = app().create().byCss(Button.class, "[value*='Apply coupon']");
-        NumberInput quantityBox = app().create().byCss(NumberInput.class, "[class*='input-text qty text']");
-        Div messageAlert = app().create().byCss(Div.class, "[class*='woocommerce-message']");
-        Button updateCart = app().create().byCss(Button.class, "[value*='Update cart']").toBeClickable();
+        Button applyCouponButton = app().create().byValueContaining(Button.class, "Apply coupon");
+        NumberInput quantityBox = app().create().byClassContaining(NumberInput.class, "input-text qty text");
+        Div messageAlert = app().create().byClassContaining(Div.class, "woocommerce-message");
+        Button updateCart = app().create().byValueContaining(Button.class, "Update cart").toBeClickable();
         Anchor proceedToCheckout =
-                app().create().byCss(Anchor.class, "[class*='checkout-button button alt wc-forward']");
+                app().create().byClassContaining(Anchor.class, "checkout-button button alt wc-forward");
         Heading billingDetailsHeading =
                 app().create().byInnerTextContaining(Heading.class, "Billing details");
         Span totalSpan = app().create().byXPath(Span.class, "//*[@class='order-total']//span");

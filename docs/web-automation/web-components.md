@@ -17,7 +17,7 @@ Example
 public void purchaseRocket() {
     app().navigate().to("http://demos.bellatrix.solutions/");
 
-    Select sortDropDown = app().create().byCss(Select.class, "[name$='orderby']");
+    Select sortDropDown = app().create().byNameEndingWith(Select.class, "orderby");
     sortDropDown.selectByText("Sort by price: low to high");
 
     Anchor protonMReadMoreButton =
@@ -26,33 +26,33 @@ public void purchaseRocket() {
     protonMReadMoreButton.hover();
 
     Anchor addToCartFalcon9 =
-    app().create().byCss(Anchor.class, "[data-product_id*='28']").toBeClickable();
+    app().create().byAttributeContaining(Anchor.class, "data-product_id", "28").toBeClickable();
     addToCartFalcon9.focus();
     addToCartFalcon9.click();
 
     Anchor viewCartButton =
-    app().create().byCss(Anchor.class, "[class*='added_to_cart wc-forward']").toBeClickable();
+    app().create().byClassContaining(Anchor.class, "added_to_cart wc-forward").toBeClickable();
     viewCartButton.click();
 
     TextField couponCodeTextField = app().create().byId(TextField.class, "coupon_code");
 
     couponCodeTextField.setText("happybirthday");
 
-    Button applyCouponButton = app().create().byCss(Button.class, "[value*='Apply coupon']");
+    Button applyCouponButton = app().create().byValueContaining(Button.class, "Apply coupon");
     applyCouponButton.click();
 
-    Div messageAlert = app().create().byCss(Div.class, "[class*='woocommerce-message']");
+    Div messageAlert = app().create().byClassContaining(Div.class, "woocommerce-message");
 
     messageAlert.toBeVisible().waitToBe();
 
     messageAlert.validateTextIs("Coupon code applied successfully.");
 
-    NumberInput quantityBox = app().create().byCss(NumberInput.class, "[class*='input-text qty text']");
+    NumberInput quantityBox = app().create().byClassContaining(NumberInput.class, "input-text qty text");
 
     quantityBox.setNumber(0);
     quantityBox.setNumber(2);
 
-    Button updateCart = app().create().byCss(Button.class, "[value*='Update cart']").toBeClickable();
+    Button updateCart = app().create().byValueContaining(Button.class, "Update cart").toBeClickable();
     updateCart.click();
 
     Span totalSpan = app().create().byXPath(Span.class, "//*[@class='order-total']//span");
@@ -60,7 +60,7 @@ public void purchaseRocket() {
     totalSpan.validateTextIs("95.00€");
 
     Anchor proceedToCheckout =
-    app().create().byCss(Anchor.class, "[class*='checkout-button button alt wc-forward']");
+    app().create().byClassContaining(Anchor.class, "checkout-button button alt wc-forward");
     proceedToCheckout.click();
 
     Heading billingDetailsHeading = app().create().byInnerTextContaining(Heading.class, "Billing details");
@@ -107,11 +107,11 @@ public void purchaseRocket() {
     TextField billingZip = app().create().byId(TextField.class, "billing_postcode");
     billingZip.setText("1000");
 
-    PhoneInput billingPhone = app().create().byId(PhoneInput.class, "billing_phone");
+    PhoneField billingPhone = app().create().byId(PhoneField.class, "billing_phone");
 
     billingPhone.setPhone("+00359894646464");
 
-    EmailInput billingEmail = app().create().byId(EmailInput.class, "billing_email");
+    EmailField billingEmail = app().create().byId(EmailField.class, "billing_email");
 
     billingEmail.setEmail("info@bellatrix.solutions");
 
@@ -120,7 +120,7 @@ public void purchaseRocket() {
     createAccountCheckBox.check();
 
     RadioButton checkPaymentsRadioButton =
-    app().create().byCss(RadioButton.class, "[for*='payment_method_cheque']");
+    app().create().byAttributeContaining(RadioButton.class, "for", "payment_method_cheque");
 
     checkPaymentsRadioButton.click();
 }
@@ -131,7 +131,7 @@ Explanations
 As mentioned before BELLATRIX exposes 30+ web components. All of them implement Proxy design pattern which means that they are not located immediately when they are created. Another benefit is that each of them includes only the actions that you should be able to do with the specific control and nothing more.
 For example, you cannot type into a button. Moreover, this way all of the actions has meaningful names – **Type** not **SendKeys** as in vanilla **WebDriver**.
 ```java
-Select sortDropDown = app().create().byCss(Select.class, "[name$='orderby']");
+Select sortDropDown = app().create().byNameEndingWith(Select.class, "orderby");
 ```
 Create methods accept a generic parameter the type of the web control. Then only the methods for this specific control are accessible. Here we tell BELLATRIX to find your component by name attribute ending with 'orderby'.
 
@@ -163,7 +163,7 @@ You can Hover and Focus on most web components. Also, can invoke Click on anchor
 <a href="/?add-to-cart=28" data-product_id="28">Add to cart</a>
 ```
 ```java
-Anchor addToCartFalcon9 = app().create().byCss(Anchor.class, "[data-product_id*='28']").toBeClickable();
+Anchor addToCartFalcon9 = app().create().byAttributeContaining(Anchor.class, "data-product_id". "28").toBeClickable();
 addToCartFalcon9.focus();
 addToCartFalcon9.click();
 ```
@@ -173,7 +173,7 @@ Locate components by custom attribute. BELLATRIX waits till the anchor is clicka
 ```
 ```java
 Anchor viewCartButton =
-app().create().byCss(Anchor.class, "[class*='added_to_cart wc-forward']").toBeClickable();
+app().create().byClassContaining(Anchor.class, "added_to_cart wc-forward").toBeClickable();
 viewCartButton.click();
 ```
 Find the anchor by class 'added_to_cart wc-forward' and wait for the component again to be clickable.
@@ -189,7 +189,7 @@ Instead of using vanilla WebDriver SendKeys to set the text, use the SetText met
 <input type="submit" class="button" name="apply_coupon" value="Apply coupon">
 ```
 ```java
-Button applyCouponButton = app().create().byCss(Button.class, "[value*='Apply coupon']");
+Button applyCouponButton = app().create().byValueContaining(Button.class, "Apply coupon");
 applyCouponButton.click();
 ```
 Create a button control by value attribute containing the text 'Apply coupon'. Button can be any of the following web components – input button, input submit or button.
@@ -197,7 +197,7 @@ Create a button control by value attribute containing the text 'Apply coupon'. B
 <div class="woocommerce-message" role="alert">Coupon code applied successfully.</div>
 ```
 ```java
-Div messageAlert = app().create().byCss(Div.class, "[class*='woocommerce-message']");
+Div messageAlert = app().create().byClassContaining(Div.class, "woocommerce-message");
 messageAlert.toBeVisible().waitToBe();
 ```
 Wait for the message DIV to show up.
@@ -209,7 +209,7 @@ The commented code fails 1 from 5 times.
 To handle these situations, BELLATRIX has hundreds of Ensure methods that wait for some condition to happen before asserting.
 Bellow the statement waits for the specific text to appear and assert it.
 ```java
-Div messageAlert = app().create().byCss(Div.class, "[class*='woocommerce-message']");
+Div messageAlert = app().create().byClassContaining(Div.class, "woocommerce-message");
 messageAlert.validateTextIs("Coupon code applied successfully.");
 ```
 **Note**: *There are much more details about these methods in the next chapters.*
@@ -217,11 +217,11 @@ messageAlert.validateTextIs("Coupon code applied successfully.");
 <input type="number" id="quantity_5ad35e76b34a2" step="1" min="0" max="" value="1" size="4" pattern="[0-9]*" inputmode="numeric">
 ```
 ```java
-NumberInput quantityBox = app().create().byCss(NumberInput.class, "[class*='input-text qty text']");
+NumberInput quantityBox = app().create().byClassContaining(NumberInput.class, "input-text qty text");
 ```
 Find the number input component by class 'input-text qty text'.
 ```java
-NumberInput quantityBox = app().create().byCss(NumberInput.class, "[class*='input-text qty text']");
+NumberInput quantityBox = app().create().byClassContaining(NumberInput.class, "input-text qty text");
 quantityBox.setNumber(0);
 quantityBox.setNumber(2);
 ```
@@ -253,12 +253,12 @@ Assert.assertEquals(billingAddress1.getPlaceholder(), "House number and street n
 ```
 Through the Placeholder, you can get the default text of the control.
 ```java
-PhoneInput billingPhone = app().create().byId(PhoneInput.class, "billing_phone");
+PhoneField billingPhone = app().create().byId(PhoneField.class, "billing_phone");
 billingPhone.setPhone("+00359894646464");
 ```
 Create the special text field control Phone it contains some additional properties unique for this web component.
 ```java
-EmailInput billingEmail = app().create().byId(EmailInput.class, "billing_email");
+EmailField billingEmail = app().create().byId(EmailField.class, "billing_email");
 billingEmail.setEmail("info@bellatrix.solutions");
 ```
 Here we create the special text field control Email it contains some additional properties unique for this web component.
@@ -269,7 +269,7 @@ createAccountCheckBox.check();
 You can check and uncheck checkboxes.
 ```java
 RadioButton checkPaymentsRadioButton =
-app().create().byCss(RadioButton.class, "[for*='payment_method_cheque']");
+app().create().byAttributeContaining(RadioButton.class, "for", "payment_method_cheque");
 checkPaymentsRadioButton.click();
 ```
 BELLATRIX finds the first RadioButton with attribute 'for' containing the value 'payment_method_cheque'. The radio buttons compared to checkboxes cannot be unchecked/unselected.
@@ -324,18 +324,18 @@ TextField | getText, setText isDisabled, isAutoComplete, isReadonly, isRequired,
 Component | Available properties
 ------------ | -------------
 ColorInput | getColor, setColor, isAutoComplete, isDisabled, isRequired, getList, getValue
-DateInput | getDate, setDate, isAutoComplete, isDisabled, isReadonly, isRequired, getMin, getMax, getStep, getValue
-DateTimeInput | getTime, setTime, isAutoComplete, isDisabled, isReadonly, isRequired, getMin, getMax, getStep, getValue
-EmailInput | getEmail, setEmail, isAutoComplete, isDisabled, isReadonly, isRequired, getMinLength, getMaxLength, getPlaceholder, getSizeAttribute, getValue
+DateField | getDate, setDate, isAutoComplete, isDisabled, isReadonly, isRequired, getMin, getMax, getStep, getValue
+DateTimeField | getTime, setTime, isAutoComplete, isDisabled, isReadonly, isRequired, getMin, getMax, getStep, getValue
+EmailField | getEmail, setEmail, isAutoComplete, isDisabled, isReadonly, isRequired, getMinLength, getMaxLength, getPlaceholder, getSizeAttribute, getValue
 MonthInput | getMonth, setMonth, isDisabled, isAutoComplete, isReadonly, isRequired, getMax, getMin, getStep, getValue
 NumberInput | getNumber, setNumber, isDisabled, isAutoComplete, isReadonly, isRequired, getPlaceholder, getMax, getMin, getStep, getValue
 Output | getText, getHtml, getFor
-PasswordInput | getPassword, setPassword, isDisabled, isAutoComplete, isReadonly, isRequired, getPlaceholder, getMaxLenght, getMinLenght, getSize, getValue
-PhoneInput | getPhone, setPhone, isDisabled, isAutoComplete, isReadonly, isRequired, getPlaceholder, getMaxLenght, getMinLenght, getSize, getValue
+PasswordField | getPassword, setPassword, isDisabled, isAutoComplete, isReadonly, isRequired, getPlaceholder, getMaxLenght, getMinLenght, getSize, getValue
+PhoneField | getPhone, setPhone, isDisabled, isAutoComplete, isReadonly, isRequired, getPlaceholder, getMaxLenght, getMinLenght, getSize, getValue
 Progress | getMax, getText, getValue
 RangeInput | getRange, setRange, isDisabled, isAutoComplete, isRequired, getList, getMax, getMin, getStep, getValue
-SearchInput | getSearch, setSearch, IsDisabled, isAutoComplete, isReadonly, isRequired, getPlaceholder, getMaxLenght, getMinLenght, getSize, getValue
+SearchField | getSearch, setSearch, IsDisabled, isAutoComplete, isReadonly, isRequired, getPlaceholder, getMaxLenght, getMinLenght, getSize, getValue
 TimeInput | getTime, setTime, getHover, getFocus, isDisabled, isAutoComplete, isReadonly, getMax, getMin, getStep, getValue
-UrlInput | getUrl, setUrl, isDisabled, isAutoComplete, isReadonly, isRequired, getPlaceholder, getMaxLenght, getMinLenght, getSize, getValue
+UrlField | getUrl, setUrl, isDisabled, isAutoComplete, isReadonly, isRequired, getPlaceholder, getMaxLenght, getMinLenght, getSize, getValue
 WeekInput | getWeek, setWeek, isDisabled, isAutoComplete, isReadonly, getMax, getMin, getStep, getValue
 
