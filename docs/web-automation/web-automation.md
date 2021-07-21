@@ -13,7 +13,7 @@ Control browsers with BELLATRIX web module. Ability to restart every time to mak
 
 
 ### Wait for Components ###
-Perform an action against an element only when a specific condition is true. Waits for the element to exist or not, to be visible, clickable, disabled. [**Learn more**](/wait-for-elements.md).
+Perform an action against an element only when a specific condition is true. Waits for the element to exist or not, to be visible, clickable, disabled. [**Learn more**](/wait-for-components.md).
 
 ### Cookies Service ###
 You need to make sure that you have navigated to the desired web page. Get all cookies, Get a specific cookie by name, Delete all cookies, Delete a specific cookie by name. Add a new cookie. [**Learn more**](cookies-service).
