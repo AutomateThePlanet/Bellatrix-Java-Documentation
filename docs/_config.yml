@@ -18,7 +18,7 @@ email: aangelov@bellatrix.solutions
 description: >- # this means to ignore newlines until "baseurl:"
   Here you can find rich documentation about the different features and configurations of Bellatrix Test Framework.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://docs.java.bellatrix.solutions" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://docs.java.bellatrix.solution" # the base hostname & protocol for your site, e.g. http://example.com
 #twitter_username: jekyllrb
 #github_username:  jekyll
 permalink: /:title
@@ -232,17 +232,17 @@ navigation:
             "wait-for-components":
                 title: Wait for Components
             "app-service":
-                title: AppService
+                title: App Service
             "device-service":
-                title: DeviceService
+                title: Device Service
             "keyboard-service":
-                title: KeyboardService
+                title: Keyboard Service
             "touch-actions-service":
-                title: TouchActionsService
+                title: Touch Actions Service
             "web-service":
-                title: WebService
-            "common-controls":
-                title: Common Controls
+                title: Web Service
+            "ios-components":
+                title: iOS Components
             "normal-assertions":
                 title: Normal Assertions
             "validate-assertions":
@@ -254,41 +254,41 @@ navigation:
             "layout-testing":
                 title: Layout Testing
             "troubleshooting-screenshots-on-fail":
-                title: Troubleshooting- Screenshots on Fail
+                title: Troubleshooting – Screenshots on Fail
             "troubleshooting-video-recording":
-                title: Troubleshooting- Video Recording
-            "execute-tests-saucelabs":
-                title: Execute Tests in SauceLabs
-            "execute-tests-browserstack":
-                title: Execute Tests in BrowserStack
-            "execute-tests-crossbrowsertesting":
-                title: Execute Tests in CrossBrowserTesting
+                title: Troubleshooting – Video Recording
+            "execute-tests-grid":
+                title: Execute Tests in a Grid
+            # "execute-tests-browserstack":
+            #     title: Execute Tests in BrowserStack
+            # "execute-tests-crossbrowsertesting":
+            #     title: Execute Tests in CrossBrowserTesting
             "add-custom-appium-options":
                 title: Add Custom Appium Capabilities
-            "static-analysis":
-                title: Static Analysis
+            # "static-analysis":
+            #     title: Static Analysis
             "logging":
                 title: Logging
-            "measure-test-execution-times": 
-                title: Measure Response Times
+            # "measure-test-execution-times": 
+            #     title: Measure Response Times
             "extensibility-test-workflow-hooks":
-                title: Extensibility- Plugin Hooks
+                title: Extensibility – Plugin Hooks
             "extensibility-custom-test-workflow-plugins":
-                title: Extensibility- Plugins
-            "extensibility-element-action-hooks":
-                title: Extensibility- Element Action Hooks
-            "extensibility-common-services-action-hooks":
-                title: Extensibility- Common Services Action Hooks
-            "extensibility-extend-existing-elements-extension-methods":
-                title: Extensibility- Extend Elements Extension Methods
-            "extensibility-extend-existing-elements-child-elements":
-                title: Extensibility- Extend Elements Child Elements
+                title: Extensibility – Plugins
+            # "extensibility-component-action-hooks":
+            #     title: Extensibility – Component Action Hooks
+            # "extensibility-common-services-action-hooks":
+            #     title: Extensibility – Common Services Action Hooks
+            # "extensibility-extend-existing-components-extension-methods":
+            #     title: Extensibility – Extend Components Extension Methods
+            "extensibility-extend-existing-components-child-components":
+                title: Extensibility – Extend Components
             "extensibility-extend-common-services":
-                title: Extensibility- Extend Common Services
+                title: Extensibility – Extend Common Services
             "extensibility-add-new-find-locators": 
-                title: Extensibility- Add New Find Locators
-            "extensibility-add-new-element-wait-methods":
-                title: Extensibility- Add New Element Wait Methods
+                title: Extensibility – Add New Find Locators
+            "extensibility-add-new-component-wait-methods":
+                title: Extensibility – Add New Component Wait Methods
             "folder-and-file-structure":
                 title: Folder and File Structure
     "desktop-automation":
@@ -296,12 +296,12 @@ navigation:
         submenu:
             "control-app":
                 title: Control App
-            "locate-elements":
-                title: Locate Elements
-            "locate-and-wait-elements":
-                title: Locate and Wait Elements
-            "wait-for-elements":
-                title: Wait for Elements
+            "locate-components":
+                title: Locate Components
+            "locate-and-wait-components":
+                title: Locate and Wait Components
+            "wait-for-components":
+                title: Wait for Components
             "app-service":
                 title: AppService
             "common-controls":
@@ -319,9 +319,9 @@ navigation:
             "image-recognition":
                 title: Image Recognition
             "troubleshooting-screenshots-on-fail":
-                title: Troubleshooting- Screenshots on Fail
+                title: Troubleshooting – Screenshots on Fail
             "troubleshooting-video-recording":
-                title: Troubleshooting- Video Recording
+                title: Troubleshooting – Video Recording
             "add-custom-webdriver-capabilities":
                 title: Add Custom WebDriver Capabilities
             "static-analysis":
@@ -331,23 +331,23 @@ navigation:
             "measure-test-execution-times": 
                 title: Measure Response Times
             "extensibility-test-workflow-hooks":
-                title: Extensibility- Plugin Hooks
+                title: Extensibility – Plugin Hooks
             "extensibility-custom-test-workflow-plugins":
-                title: Extensibility- Plugins
-            "extensibility-element-action-hooks":
-                title: Extensibility- Element Action Hooks
+                title: Extensibility – Plugins
+            "extensibility-component-action-hooks":
+                title: Extensibility – Component Action Hooks
             "extensibility-common-services-action-hooks":
-                title: Extensibility- Common Services Action Hooks
-            "extensibility-extend-existing-elements-extension-methods":
-                title: Extensibility- Extend Elements Extension Methods
-            "extensibility-extend-existing-elements-child-elements":
-                title: Extensibility- Extend Elements Child Elements
+                title: Extensibility – Common Services Action Hooks
+            "extensibility-extend-existing-components-extension-methods":
+                title: Extensibility – Extend Components Extension Methods
+            "extensibility-extend-existing-components-child-components":
+                title: Extensibility – Extend Components Child Components
             "extensibility-extend-common-services":
-                title: Extensibility- Extend Common Services
+                title: Extensibility – Extend Common Services
             "extensibility-add-new-find-locators": 
-                title: Extensibility- Add New Find Locators
-            "extensibility-add-new-element-wait-methods":
-                title: Extensibility- Add New Element Wait Methods
+                title: Extensibility – Add New Find Locators
+            "extensibility-add-new-component-wait-methods":
+                title: Extensibility – Add New Component Wait Methods
             "folder-and-file-structure":
                 title: Folder and File Structure
     # "api-automation":
