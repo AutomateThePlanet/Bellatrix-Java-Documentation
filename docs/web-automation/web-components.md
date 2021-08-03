@@ -324,8 +324,8 @@ TextField | getText, setText isDisabled, isAutoComplete, isReadonly, isRequired,
 Component | Available properties
 ------------ | -------------
 ColorInput | getColor, setColor, isAutoComplete, isDisabled, isRequired, getList, getValue
-DateField | getDate, setDate, isAutoComplete, isDisabled, isReadonly, isRequired, getMin, getMax, getStep, getValue
-DateTimeField | getTime, setTime, isAutoComplete, isDisabled, isReadonly, isRequired, getMin, getMax, getStep, getValue
+DateInput | getDate, setDate, isAutoComplete, isDisabled, isReadonly, isRequired, getMin, getMax, getStep, getValue
+DateTimeInput | getTime, setTime, isAutoComplete, isDisabled, isReadonly, isRequired, getMin, getMax, getStep, getValue
 EmailField | getEmail, setEmail, isAutoComplete, isDisabled, isReadonly, isRequired, getMinLength, getMaxLength, getPlaceholder, getSizeAttribute, getValue
 MonthInput | getMonth, setMonth, isDisabled, isAutoComplete, isReadonly, isRequired, getMax, getMin, getStep, getValue
 NumberInput | getNumber, setNumber, isDisabled, isAutoComplete, isReadonly, isRequired, getPlaceholder, getMax, getMin, getStep, getValue
