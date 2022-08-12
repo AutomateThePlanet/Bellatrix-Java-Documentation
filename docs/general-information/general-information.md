@@ -2,41 +2,64 @@
 layout: default
 title:  "General Information"
 excerpt: "Learn how to install and activate BELLATRIX. Read the system requirements."
-date:   2020-04-30 06:50:17 +0200
+date:   2022-08-12 06:50:17 +0200
 parent: general-information
 permalink: /general-information/
 anchors:
   overview: Overview
   simple-installation: Simple Installation
   running-tests-through-cli: Running Tests through CLI
+  supported-code-editors: Supported Code Editors
+  sdks-and-frameworks-prerequisites: SDKs and Frameworks Prerequisites
 ---
 Overview
 --------
-BELLATRIX is not a single thing it contains multiple framework libraries, extensions and tools. The tool is built to be cross-platform.
+Customize and extend our cross-platform .NET framework to perfectly fit your needs. Start on top of hundreds of best practice features and integrations.
+
+Contains the full source code of BELLATRIX Test Automation Framework and Templates for faster usage
+
+BELLATRIX is not a single thing it contains multiple framework libraries, extensions and tools. The tool is built to be cross-platform, however some of the features can be used under Windows since they are written for Visual Studio.
 
 Simple Installation
 ------------------
-1. Download the BELLATRIX
-2. Unzip it. Open BellatrixTestFramework.sln in Visual Studio 
-3. Open one of the preconfigured projects. It works for both MSTest and NUnit without additional configuration.
-
-![Bellatrix Preconfigured Web Project](images/bellatrix-web-preconfigured.PNG)
+1. Download the BELLATRIX projects as a zip file from the Code green button in the right corner.
+2. Unzip it. Open BELLATRIX-Java in IntelliJ
+3. Open one of the preconfigured modules. It works for both JUnit and TestNG without additional configuration.
 
 4. Run the sample tests.
 5. You can try to write a simple test yourself.
-6. For an in-depth revision of all framework features you can open the getting started projects.
-![Starter Kits](images/starter-kits.PNG)
+6. For an in-depth revision of all framework features you can check the [**official documentation**](http://docs.java.bellatrix.solutions/web-automation/)
 
 Running Tests through CLI
 --------------------------
- To execute your tests via command line in Continues Integration (CI), you can use the native .NET Core test runner.
+ To execute your tests via command line in Continues Integration (CI), you can use the native Maven test runner.
 1. Navigate to the folder of your test project.
 2. Open the CMD there.
 3. Execute the following command:
 
 ```
-dotnet test
+mvn clean test
 ```
-For applying filters and other more advanced configuration check the official documentation [https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test "dotnet test") and [https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-vstest](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-vstest "dotnet vstest").
+For applying filters and other more advanced configuration check the official documentation [**official documentation**](https://junit.org/junit5/docs/current/user-guide/#running-tests-console-launcher)
 
-Both MSTest and NUnit are supported.
+Both TestNG and JUnit are supported.
+
+Supported Code Editors
+----------------------
+The recommended code editor for writing BELLATRIX tests is IntelliJ
+
+NOTE: After the support for .NET Framework 5.0 and higher, Microsoft officially not support .NET Core development in older versions of Visual Studio 2015, 2017 and so on.
+
+### Other Supported Editors: ###
+- Visual Studio Code
+- IntelliJ
+- NetBeans
+- Eclipse
+
+SDKs and Frameworks Prerequisites
+-------------------------------- 
+We recommend to install the latest stable version of JDK.
+
+For BELLATRIX desktop modules you need to download [**WinAppDriver**](https://github.com/Microsoft/WinAppDriver/releases). You need to make sure it is started before running any BELLATRIX desktop tests.
+
+For BELLATRIX mobile modules you need to download and install [**Appium**](http://appium.io/). You need to make sure it is started before running any BELLATRIX mobile tests.

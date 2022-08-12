@@ -2,7 +2,7 @@
 layout: default
 title:  "Product Integrations"
 excerpt: "Learn how BELLATRIX integrates with various tools and systems."
-date:   2019-02-17 06:50:17 +0200
+date:   2022-08-12 06:50:17 +0200
 parent: product-integrations
 permalink: /product-integrations/
 
@@ -19,22 +19,10 @@ Allure Framework is a flexible, lightweight multi-language test report tool that
 ReportPortal is a service, that provides increased capabilities to speed up results analysis and reporting through the use of built-in analytic features. ReportPortal is a great addition to the Continuous Integration and Continuous Testing process.
 [**Learn more**](/reportportal-test-results.md)
 
-### Azure DevOps ###
-Azure DevOps offers one of the best CI on the market. Instead of using 3rd party tools or systems you can directly publish the results in Azure DevOps.
-[**Learn more**](/azuredevops-test-results.md)
+### AWS Services ###
+We offer many integrations with Amazon cloud such as Secrets Manager, S3 Cloud Storage and Rekognition for validating PDFs.
+[**Learn more**](/aws-s3.md)
 
-### Jira Bug Reporting ###
-The automatic bug reporting is a BELLATRIX feature that will create a bug automatically in Jira if some of your tests fail. The plugin will populate the description, attach a screenshot, video of the test. Moreover, it will generate human-readable steps to reproduce.
-[**Learn more**](/bug-reporting-jira.md)
-
-### Azure DevOps Bug Reporting ###
-The automatic bug reporting is a BELLATRIX feature that will create a bug automatically in Azure DevOps if some of your tests fail. The plugin will populate the description, attach a screenshot, video of the test. Moreover, it will generate human-readable steps to reproduce.
-[**Learn more**](/bug-reporting-azuredevops.md)
-
-### Dynamic Test Cases qTest ###
-Dynamic test cases are a unique feature in BELLATRIX, where the framework automatically generates test cases in a qTest TCMS based on your automated tests. It will populate the title, description, and other necessary properties automatically. Moreover, it will generate human-readable steps and expected results.
-[**Learn more**](/dynamic-test-cases-qtest.md)
-
-### Dynamic Test Cases Azure DevOps ###
-Dynamic test cases are a unique feature in BELLATRIX, where the framework automatically generates test cases in a Azure DevOps TCMS based on your automated tests. It will populate the title, description, and other necessary properties automatically. Moreover, it will generate human-readable steps and expected results.
-[**Learn more**](/dynamic-test-cases-azuredevops.md)
+### Email Testing Services ###
+BELLATRIX comes with a few integrations for testing emails and using them for building more maintainable tests via creating stable test data. We have utilities for Mailslurp and Testmail.
+[**Learn more**](/mailslurp.md)

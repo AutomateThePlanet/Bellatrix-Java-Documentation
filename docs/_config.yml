@@ -44,21 +44,18 @@ kramdown:
 #   - vendor/gems/
 #   - vendor/ruby/
 navigation:
-    # "overview":
-    #     title: Overview
-    #     submenu:
-    # "general-information":
-    #     title: General Information
-    #     submenu:
-    #         "system-requirements":
-    #             title: System Requirements
-    #         "installation":
-    #             title: Installation
-    #         "update":
-    #             title: Update
-    #         "how-to-use-starter-kits":
-    #             title: How to Use Starter Kits?
-    "web-automation":
+    "overview":
+        title: Overview
+        submenu:
+    "general-information":
+        title: General Information
+        submenu:
+            "system-requirements":
+                title: System Requirements
+            "installation":
+                title: Installation
+            "update":
+                title: Update
         title: Web
         submenu:
             "control-browser":
@@ -385,20 +382,22 @@ navigation:
     #             title: Measure Response Times
     #         "folder-and-file-structure":
     #             title: Folder and File Structure    
-    # "product-integrations":
-    #     title: Product Integrations
-    #     submenu:
-    #         "dynamic-test-cases-azuredevops":
-    #             title: Dynamic Test Cases Azure DevOps
-    #         "dynamic-test-cases-qtest":
-    #             title: Dynamic Test Cases qTest
-    #         "bug-reporting-azuredevops":
-    #             title: Bug Reporting Azure DevOps
-    #         "bug-reporting-jira":
-    #             title: Bug Reporting Jira
-    #         "allure-test-results":
-    #             title: Test Results Allure
-    #         "reportportal-test-results":
-    #             title: Test Results ReportPortal
-    #         "azuredevops-test-results":
-    #             title: Test Results Azure DevOps
+    "product-integrations":
+        title: Product Integrations
+        submenu:
+            "allure-test-results":
+                title: Test Results Allure
+            "reportportal-test-results":
+                title: Test Results ReportPortal
+            "aws-rekognition":
+                title: AWS Rekognition
+            "aws-rekognition":
+                title: AWS Rekognition
+            "aws-s3":
+                title: AWS S3 Cloud Object Storage
+            "aws-secrets-manager":
+                title: AWS Secrets Manager
+            "mailslurp":
+                title: Email Testing - Mailslurp
+            "testmail":
+                title: Email Testing - Testmail

@@ -2,7 +2,7 @@
 layout: default
 title:  "ReportPortal Test Results"
 excerpt: "Learn to analyze BELLATRIX test results through ReportPortal."
-date:   2018-06-23 06:50:17 +0200
+date:   2022-08-12 06:50:17 +0200
 parent: product-integrations
 permalink: /product-integrations/reportportal-test-results/
 anchors:
@@ -71,49 +71,57 @@ http://127.0.0.1:8080
 
 Configuration
 -------------
-First, you need to install the **ReportPortal.VSTest.TestLogger** NuGet package to your tests project.
-After that when you execute your tests through native **dotnet vstest** test runner the tests will be automatically synced with the portal. Next you need to a JSON configuration file to your project called **ReportPortal.config.json**.
+First, you need to install the ReportPortal Maven dependencies.
 ```json
-{
-  "$schema": "https://raw.githubusercontent.com/reportportal/agent-net-vstest/master/ReportPortal.VSTest.TestLogger/ReportPortal.config.schema",
-  "enabled": true,
-  "server": {
-    "url": "http://127.0.0.1:8080/api/v1/",
-    "project": "superadmin_personal",
-    "authentication": {
-      "uuid": "d8685bb4-2f2a-4335-9c8b-1f2a5d176d02"
-    }
-  },
-  "launch": {
-    "name": "Automate The Planet Test Portal Demo",
-    "description": "This is a demo run of the ATP demo examples for a demonstration of Test Portal integration with MSTest tests.",
-    "debugMode": false,
-    "tags": [ "Automate The Planet", "Test Reporting", "MSTEST" ]
-  }
-}
+<dependency>
+   <groupId>com.epam.reportportal</groupId>
+   <artifactId>agent-java-junit5</artifactId>
+   <version>5.1.5</version>
+</dependency>
+<dependency>
+    <groupId>com.epam.reportportal</groupId>
+    <artifactId>logger-java-logback</artifactId>
+    <version>5.1.1</version>
+</dependency>
+```
+Also, you need to add their plugin:
+```json
+<build>
+    <plugins>
+        <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0-M5</version>
+            <configuration>
+                <properties>
+                    <configurationParameters>
+                        junit.jupiter.extensions.autodetection.enabled = true
+                    </configurationParameters>
+                </properties>
+            </configuration>
+        </plugin>
+        <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.0.0-M5</version>
+            <configuration>
+                <properties>
+                    <configurationParameters>
+                        junit.jupiter.extensions.autodetection.enabled = true
+                    </configurationParameters>
+                </properties>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
+After that when you execute your tests through native **maven clean test** test runner the tests will be automatically synced with the portal. Next you need to a JSON configuration file to your project called **reportportal.properties**.
+```json
+rp.endpoint = http://localhost:8080
+rp.uuid = 8ca3be4c-12321312-asdasd-122121
+rp.launch = default_JUNIT_AGENT
+rp.project = lambda-test-reports-examples
 ```
 You need to mention the name of your project, and from the ReportPortal settings section, you need to copy the authentication guid for your user. In the launch settings, you can customize the name of the test runs and add some tags.
 
-[Official Documentation](https://github.com/reportportal/agent-net-vstest)
+[Official Documentation](https://reportportal.io/installation)
 
-If you run your tests from Visual Studio the results won't show up in the portal. Instead you need to run them from command line using the following command.
-
-```
-dotnet vstest Bellatrix.Web.Tests.dll --testcasefilter:TestCategory=CI --logger:ReportPortal
-```
-
-The most important part is mentioning the logger **--logger:ReportPortal**.
-
-[dotnet vstest official documentation](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-vstest?tabs=netcore21)
-
-**NUnit Project Configuration**
-
-First, you need to install the **ReportPortal.NUnit** NuGet package to your test project.
-
-To enable NUnit extension you have to add **ReportPortal.addins** file in the folder where NUnit Runner is located. The content of the file should contain line with relative path to the ReportPortal.NUnitExtension.dll. To read more about how NUnit is locating extensions please follow [this](https://github.com/nunit/docs/wiki/Engine-Extensibility#locating-addins).
-
-To enable **ReportPortal.Extension** you need create a **ReportPortal.addins** file in the **NUnitRunner** folder with the following content:
-
-**../YourProject/bin/Debug/ReportPortal.NUnitExtension.dll**
-
-[Official Documentation](https://github.com/reportportal/agent-net-nunit)
+If you run your tests from IntelliJ the results won't show up in the portal. Instead you need to run them from command line.
