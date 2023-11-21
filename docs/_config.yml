@@ -257,8 +257,8 @@ navigation:
                 title: Troubleshooting – Video Recording
             "execute-tests-grid":
                 title: Execute Tests in a Grid
-            # "execute-tests-browserstack":
-            #     title: Execute Tests in BrowserStack
+            "custom-code":
+                title: Custom
             # "execute-tests-crossbrowsertesting":
             #     title: Execute Tests in CrossBrowserTesting
             "add-custom-appium-options":
