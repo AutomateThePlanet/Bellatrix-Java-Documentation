@@ -219,82 +219,43 @@ public enum DateTimeDeltaType {
 ```
 
 ```java
-public class FirstSeleniumTests {
-    private WebDriver driver;
-
-    @BeforeAll
-    public static void setUpClass() {
-        WebDriverManager.chromedriver().setup();
-    }
-
-    @BeforeEach
-    public void setUp() {
-        driver = new ChromeDriver();
-    }
-
-    @Test
-    public void properCheckboxSelected() throws Exception {
-        driver.navigate().to("https://lambdatest.github.io/sample-todo-app/");
-
-        LocalDate birthDay = LocalDate.of(1990, 10, 20);
-        // us 10/20/1990
-        DateTimeFormatter usDateFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        String dateToType = usDateFormat.format(birthDay);
-
-        WebElement todoInput = driver.findElement(By.id("sampletodotext"));
-        todoInput.sendKeys(dateToType);
-
-        var addButton = driver.findElement(By.id("addbutton"));
-        addButton.click();
-
-        var todoCheckboxes = driver.findElements(By.xpath("//li[@ng-repeat]/input"));
-
-        todoCheckboxes.get(2).click();
-
-        var todoInfos = driver.findElements(By.xpath("//li[@ng-repeat]/span"));
-
-        Assertions.assertEquals("20-10-1990", todoInfos.get(5).getText());
-
-        String expectedUrl = "https://lambdatest.github.io/sample-todo-app/";
-        Assertions.assertTrue(expectedUrl.equals(driver.getCurrentUrl()), "URL does not match");
-
-        String notExpectedUrl = "https://www.lambdatest.com/";
-        Assertions.assertFalse(notExpectedUrl.equals(driver.getCurrentUrl()), "URL match");
-
-        var expectedItems = new String[] {"First Item", "Second Item", "Third Item", "Fourth Item", "Fifth Item", "20-10-1990"};
-        var actualToDoInfos  = todoInfos.stream().map(e -> e.getText()).toArray();
-        Assertions.assertArrayEquals(expectedItems, actualToDoInfos);
-
-        Exception exception = Assertions.assertThrows(ArithmeticException.class, () -> new Calculator().divide(1, 0));
-
-        Assertions.assertEquals("/ by zero", exception.getMessage());
-
-        Assertions.assertTimeout(ofMinutes(2), () -> {
-            // perform your tasks
-        });
-
-        Assertions.assertAll(
-                () -> Assertions.assertTrue(expectedUrl.equals(driver.getCurrentUrl()), "URL does not match"),
-                () -> Assertions.assertFalse(notExpectedUrl.equals(driver.getCurrentUrl()), "URL match"),
-                () -> Assertions.assertArrayEquals(expectedItems, actualToDoInfos)
-        );
-
-        double actualDoubleValue= 2.999;
-        double expectedDoubleValue = 3.000;
-
-        Assertions.assertEquals(expectedDoubleValue, actualDoubleValue, 0.001);
-
-        var currentTime = LocalDateTime.now();
-        var currentTimeInPast = LocalDateTime.now().minusMinutes(3);
-
-        DateTimeAssert.assertEquals(currentTime, currentTimeInPast, DateTimeDeltaType.MINUTES, 4);
-    }
-
-    @AfterEach
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
-}
+Assertions.assertEquals("20-10-1990", todoInfos.get(5).getText());
 ```
+This assertion checks if the text of the sixth element in todoInfos matches the string "20-10-1990". It verifies that the text in the web application is as expected.
+```java
+Assertions.assertTrue(expectedUrl.equals(driver.getCurrentUrl()), "URL does not match");
+```
+This asserts that the current URL of the WebDriver matches the expected URL. The test will pass if the condition is true.
+```java
+Assertions.assertFalse(notExpectedUrl.equals(driver.getCurrentUrl()), "URL match");
+```
+This asserts that the current URL of the WebDriver does not match notExpectedUrl. The test will pass if the URL is different.
+```java
+Assertions.assertArrayEquals(expectedItems, actualToDoInfos);
+```
+This checks if the array of expected items matches the array of texts from todoInfos. It's used to verify multiple elements in a collection.
+```java
+Exception exception = Assertions.assertThrows(ArithmeticException.class, () -> new Calculator().divide(1, 0));
+Assertions.assertEquals("/ by zero", exception.getMessage());
+```
+This tests if the specified action (divide(1, 0)) throws an ArithmeticException. It then checks if the exception message is as expected.
+```java
+Assertions.assertTimeout(ofMinutes(2), () -> {
+    // perform your tasks
+});
+```
+Ensures that the task inside the lambda expression completes within 2 minutes.
+```java
+Assertions.assertAll(
+    // Multiple assertions
+);
+```
+This groups multiple assertions together. All of them must pass for the test to pass. It's useful for bundling related assertions.
+```java
+Assertions.assertEquals(expectedDoubleValue, actualDoubleValue, 0.001);
+```
+Asserts that two double values are equal within a delta of 0.001. This is important for floating-point comparisons due to precision issues.
+```java
+DateTimeAssert.assertEquals(currentTime, currentTimeInPast, DateTimeDeltaType.MINUTES, 4);
+```
+This is a custom assertion that checks if two LocalDateTime objects are equal within a tolerance. Here, it checks if currentTime and currentTimeInPast are within 4 minutes of each other.
