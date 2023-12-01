@@ -263,8 +263,8 @@ navigation:
             #     title: Execute Tests in CrossBrowserTesting
             "add-custom-appium-options":
                 title: Add Custom Appium Capabilities
-            # "static-analysis":
-            #     title: Static Analysis
+            "static-analysis":
+                title: Static Analysis
             "logging":
                 title: Logging
             # "measure-test-execution-times": 

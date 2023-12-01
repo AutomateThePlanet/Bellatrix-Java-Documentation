@@ -53,209 +53,388 @@ All projects come with predefined StyleCop rules:
 
 Java Test
 ```java
-public class Calculator {
-    public int add(int a, int b) {
-        return a + b;
-    }
+@BeforeAll
+public static void setUpClass() {
+    WebDriverManager.chromedriver().setup();
+}
 
-    public int divide(int a, int b) {
-        if (b == 0)
-            throw new ArithmeticException("/ by zero");
-        return a/b;
+@BeforeEach
+public void setUp() {
+    driver = new ChromeDriver();
+    webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(WAIT_FOR_ELEMENT_TIMEOUT));
+    actions = new Actions(driver);
+}
+
+// tests
+
+@AfterEach
+public void tearDown() {
+    if (driver != null) {
+        driver.quit();
     }
 }
 ```
 
-```java
-@Target({ ElementType.TYPE, ElementType.METHOD })
-@Retention(RetentionPolicy.RUNTIME)
-@Tag("nightlyRun")
-public @interface NightlyRun {
-}
-```
 
 ```java
-@Target(ElementType.METHOD)
-@Retention(RetentionPolicy.RUNTIME)
-@Tag("nightlyRun")
 @Test
-public @interface NightlyRunTest {
+public void verifyToDoListCreatedSuccessfully() {
+    // Navigate to the web application
+    driver.navigate().to("https://todomvc.com/");
+    // Open the specific technology app
+    openTechnologyApp("Backbone.js");
+    // Add new to-do items
+    addNewToDoItem("Clean the car");
+    addNewToDoItem("Clean the house");
+    addNewToDoItem("Buy Ketchup");
+    // Mark an item as completed
+    getItemCheckbox("Buy Ketchup").click();
+    // Assert the number of items left
+    assertLeftItems(2);
+}
+```
+
+```java
+private void assertLeftItems(int expectedCount){
+    var resultSpan = waitAndFindElement(By.xpath("//footer/*/span | //footer/span"));
+    if (expectedCount == 1){
+        var expectedText = String.format("%d item left", expectedCount);
+        validateInnerTextIs(resultSpan, expectedText);
+    } else {
+        var expectedText = String.format("%d items left", expectedCount);
+        validateInnerTextIs(resultSpan, expectedText);
+    }
+}
+
+private void validateInnerTextIs(WebElement resultElement, String expectedText){
+    webDriverWait.until(ExpectedConditions.textToBePresentInElement(resultElement, expectedText));
+}
+
+private WebElement getItemCheckbox(String todoItem){
+    var xpathLocator = String.format("//label[text()='%s']/preceding-sibling::input", todoItem);
+    return waitAndFindElement(By.xpath(xpathLocator));
+}
+
+private void openTechnologyApp(String technologyName){
+    var technologyLink = waitAndFindElement(By.linkText(technologyName));
+    technologyLink.click();
+}
+
+private void addNewToDoItem(String todoItem){
+    var todoInput = waitAndFindElement(By.xpath("//input[@placeholder='What needs to be done?']"));
+    todoInput.sendKeys(todoItem);
+    actions.click(todoInput).sendKeys(Keys.ENTER).perform();
+}
+
+private WebElement waitAndFindElement(By locator){
+    return webDriverWait.until(ExpectedConditions.presenceOfElementLocated(locator));
 }
 ```
 
 
 ```java
-@TestMethodOrder(value = MethodOrderer.Random.class)
-public class CalculatorTests {
-    private final Calculator _calculator = new Calculator();
-
-    @BeforeAll
-    public static void setUpClass() {
-        System.out.println("This is @BeforeAll annotation");
-    }
-
-    @BeforeEach
-    public void setUp() {
-        System.out.println("This is @BeforeEach annotation");
-    }
-
-    @NightlyRunTest
-    @Order(2)
-    public void test_Addition() {
-        System.out.println("This is test 1");
-        var actualResult = _calculator.add(1, 1);
-
-        Assertions.assertEquals(2, actualResult);
-    }
-
-    @Test
-    @Order(1)
-    public void testAdditionDifferentNumbers(){
-        System.out.println("This is test 2");
-        var actualResult = _calculator.add(2, 1);
-
-        Assertions.assertEquals(3, actualResult);
-    }
-
-    @AfterEach
-    public void tearDown() {
-        System.out.println("This is @After annotation");
-    }
-
-    @AfterAll
-    public static void tearDownClass() {
-        System.out.println("This is @AfterAll annotation");
-    }
-}
-```
-
-```xml
-<dependencies>
-    <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-api</artifactId>
-        <version>RELEASE</version>
-        <scope>test</scope>
-    </dependency>
-    <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-engine</artifactId>
-        <version>RELEASE</version>
-        <scope>test</scope>
-    </dependency>
-    <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-api</artifactId>
-        <version>5.8.1</version>
-        <scope>compile</scope>
-    </dependency>
-    <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-api</artifactId>
-        <version>5.8.1</version>
-        <scope>compile</scope>
-    </dependency>
-
-    <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-java</artifactId>
-        <version>4.0.0</version>
-    </dependency>
-
-    <dependency>
-        <groupId>io.github.bonigarcia</groupId>
-        <artifactId>webdrivermanager</artifactId>
-        <version>4.3.1</version>
-        <scope>test</scope>
-    </dependency>
-</dependencies>
-```
-
-```java
-public class DateTimeAssert {
-    public static void assertEquals(LocalDateTime expectedDate, LocalDateTime actualDate, DateTimeDeltaType deltaType, int count) throws Exception {
-        if (((expectedDate == null) && (actualDate == null))) {
-            return;
-        }
-        else if ((expectedDate == null)) {
-            throw new NullPointerException("The expected date was null");
-        }
-        else if ((actualDate == null)) {
-            throw new NullPointerException("The actual date was null");
-        }
-
-        Duration expectedDelta = DateTimeAssert.getTimeSpanDeltaByType(deltaType, count);
-
-        double totalSecondsDifference = Math.abs((actualDate.until(expectedDate, ChronoUnit.SECONDS)));
-
-        if ((totalSecondsDifference > expectedDelta.getSeconds())) {
-            var exceptionMessage =String.format("Expected Date: {0}, Actual Date: {1} \nExpected Delta: {2}, Actual Delta in seconds- {3} (Delta Type: " +
-                    "{4})", expectedDate, actualDate, expectedDelta, totalSecondsDifference, deltaType);
-            throw new Exception(exceptionMessage);
-        }
-    }
-
-    private static Duration getTimeSpanDeltaByType(DateTimeDeltaType type, int count) {
-        Duration result;
-        switch (type) {
-            case DAYS:
-                result = Duration.ofDays(count);
-                break;
-            case MINUTES:
-                result = Duration.ofMinutes(count);
-                break;
-            default:
-                throw new NotImplementedException("The delta type is not implemented.");
-        }
-        return result;
-    }
-}
-```
-```java
-public enum DateTimeDeltaType {
-    DAYS,
-    MINUTES
+@ParameterizedTest
+@NullAndEmptySource
+void isBlank_ShouldReturnTrueForNullAndEmptyStrings(String input) {
+    Assertions.assertTrue(input == null);
 }
 ```
 
 ```java
-Assertions.assertEquals("20-10-1990", todoInfos.get(5).getText());
+@ParameterizedTest(name = "{index}. verify todo list created successfully when technology = {0}")
+@ValueSource(strings = {
+        "Backbone.js",
+        "AngularJS",
+        "React",
+        "Vue.js",
+        "CanJS",
+        "Ember.js",
+        "KnockoutJS",
+        "Marionette.js",
+        "Polymer",
+        "Angular 2.0",
+        "Dart",
+        "Elm",
+        "Closure",
+        "Vanilla JS",
+        "jQuery",
+        "cujoJS",
+        "Spine",
+        "Dojo",
+        "Mithril",
+        "Kotlin + React",
+        "Firebase + AngularJS",
+        "Vanilla ES6"
+})
+@NullAndEmptySource
+public void verifyToDoListCreatedSuccessfully_withParams(String technology){
+    driver.navigate().to("https://todomvc.com/");
+    openTechnologyApp(technology);
+    addNewToDoItem("Clean the car");
+    addNewToDoItem("Clean the house");
+    addNewToDoItem("Buy Ketchup");
+    getItemCheckbox("Buy Ketchup").click();
+
+    assertLeftItems(2);
+}
 ```
-This assertion checks if the text of the sixth element in todoInfos matches the string "20-10-1990". It verifies that the text in the web application is as expected.
+
 ```java
-Assertions.assertTrue(expectedUrl.equals(driver.getCurrentUrl()), "URL does not match");
+public enum WebTechnology {
+    BACKBONEJS("Backbone.js"),
+    ANGULARJS("AngularJS"),
+    REACT("React"),
+    VUEJS("Vue.js"),
+    CANJS("CanJS"),
+    EMBERJS("Ember.js"),
+    KNOCKOUTJS("KnockoutJS"),
+    MARIONETTEJS("Marionette.js"),
+    POLYMER("Polymer"),
+    ANGULAR2("Angular 2.0"),
+    DART("Dart"),
+    ELM("Elm"),
+    CLOSURE("Closure"),
+    VANILLAJS("Vanilla JS"),
+    JQUERY("jQuery"),
+    CUJOJS("cujoJS"),
+    SPINE("Spine"),
+    DOJO("Dojo"),
+    MITHRIL("Mithril"),
+    KOTLIN_REACT("Kotlin + React"),
+    FIREBASE_ANGULARJS("Firebase + AngularJS"),
+    VANILLA_ES6("Vanilla ES6");
+
+    private String technologyName;
+
+
+    WebTechnology(String technologyName) {
+        this.technologyName = technologyName;
+    }
+
+    public String getTechnologyName() {
+        return technologyName;
+    }
+}
 ```
-This asserts that the current URL of the WebDriver matches the expected URL. The test will pass if the condition is true.
+
 ```java
-Assertions.assertFalse(notExpectedUrl.equals(driver.getCurrentUrl()), "URL match");
+@ParameterizedTest
+@EnumSource(WebTechnology.class)
+public void verifyToDoListCreatedSuccessfully_withEnum(WebTechnology technology){
+    driver.navigate().to("https://todomvc.com/");
+    openTechnologyApp(technology.getTechnologyName());
+    addNewToDoItem("Clean the car");
+    addNewToDoItem("Clean the house");
+    addNewToDoItem("Buy Ketchup");
+    getItemCheckbox("Buy Ketchup").click();
+
+    assertLeftItems(2);
+}
+
+// Enum filter - data driven
+@ParameterizedTest
+@EnumSource(value = WebTechnology.class, names = {"BACKBONEJS", "ANGULARJS", "EMBERJS", "KNOCKOUTJS"})
+public void verifyToDoListCreatedSuccessfully_withEnumFilter(WebTechnology technology){
+    driver.navigate().to("https://todomvc.com/");
+    openTechnologyApp(technology.getTechnologyName());
+    addNewToDoItem("Clean the car");
+    addNewToDoItem("Clean the house");
+    addNewToDoItem("Buy Ketchup");
+    getItemCheckbox("Buy Ketchup").click();
+
+    assertLeftItems(2);
+}
+
+// Enum filter exclude - data driven
+@ParameterizedTest
+@EnumSource(value = WebTechnology.class, names = {"BACKBONEJS", "ANGULARJS", "EMBERJS", "KNOCKOUTJS"}, mode = EnumSource.Mode.EXCLUDE)
+public void verifyToDoListCreatedSuccessfully_withEnumFilterExclude(WebTechnology technology){
+    driver.navigate().to("https://todomvc.com/");
+    openTechnologyApp(technology.getTechnologyName());
+    addNewToDoItem("Clean the car");
+    addNewToDoItem("Clean the house");
+    addNewToDoItem("Buy Ketchup");
+    getItemCheckbox("Buy Ketchup").click();
+
+    assertLeftItems(2);
+}
+
+// Enum filter exclude - data driven
+@ParameterizedTest
+@EnumSource(value = WebTechnology.class, names = {".+JS"}, mode = EnumSource.Mode.EXCLUDE)
+public void verifyToDoListCreatedSuccessfully_withEnumFilterExcludeRegex(WebTechnology technology){
+    driver.navigate().to("https://todomvc.com/");
+    openTechnologyApp(technology.getTechnologyName());
+    addNewToDoItem("Clean the car");
+    addNewToDoItem("Clean the house");
+    addNewToDoItem("Buy Ketchup");
+    getItemCheckbox("Buy Ketchup").click();
+
+    assertLeftItems(2);
+}
 ```
-This asserts that the current URL of the WebDriver does not match notExpectedUrl. The test will pass if the URL is different.
+
 ```java
-Assertions.assertArrayEquals(expectedItems, actualToDoInfos);
+// CSV Source without file
+@ParameterizedTest
+@CsvSource(value = {
+        "Backbone.js,Clean the car,Clean the house,Buy Ketchup,Buy Ketchup,2",
+        "AngularJS,Clean the car,Clean the house,Clean the house,Clean the house,2",
+        "React,Clean the car,Clean the house,Clean the car,Clean the car,2"},
+        delimiter = ',')
+public void verifyToDoListCreatedSuccessfully_withParamsCsvSourceWithoutFile(String technology, String item1, String item2, String item3, String itemToCheck, int expectedLeftItems){
+    driver.navigate().to("https://todomvc.com/");
+    openTechnologyApp(technology);
+    addNewToDoItem(item1);
+    addNewToDoItem(item2);
+    addNewToDoItem(item3);
+    getItemCheckbox(itemToCheck).click();
+
+    assertLeftItems(expectedLeftItems);
+}
 ```
-This checks if the array of expected items matches the array of texts from todoInfos. It's used to verify multiple elements in a collection.
+
 ```java
-Exception exception = Assertions.assertThrows(ArithmeticException.class, () -> new Calculator().divide(1, 0));
-Assertions.assertEquals("/ by zero", exception.getMessage());
+@ParameterizedTest
+@CsvFileSource(resources = "/data.csv", numLinesToSkip = 1)
+public void verifyToDoListCreatedSuccessfully_withParamsCsvSourceWithFile(String technology, String item1, String item2, String item3, String itemToCheck, int expectedLeftItems){
+    driver.navigate().to("https://todomvc.com/");
+    openTechnologyApp(technology);
+    addNewToDoItem(item1);
+    addNewToDoItem(item2);
+    addNewToDoItem(item3);
+    getItemCheckbox(itemToCheck).click();
+
+    assertLeftItems(expectedLeftItems);
+}
 ```
-This tests if the specified action (divide(1, 0)) throws an ArithmeticException. It then checks if the exception message is as expected.
+
 ```java
-Assertions.assertTimeout(ofMinutes(2), () -> {
-    // perform your tasks
-});
+@ParameterizedTest
+@MethodSource("provideWebTechnologies")
+public void verifyToDoListCreatedSuccessfully_withMethod(String technology){
+    driver.navigate().to("https://todomvc.com/");
+    openTechnologyApp(technology);
+    addNewToDoItem("Clean the car");
+    addNewToDoItem("Clean the house");
+    addNewToDoItem("Buy Ketchup");
+    getItemCheckbox("Buy Ketchup").click();
+
+    assertLeftItems(2);
+}
+
+private static Stream<String> provideWebTechnologies() {
+    return Stream.of("Backbone.js",
+            "AngularJS",
+            "React",
+            "Vue.js",
+            "CanJS",
+            "Ember.js",
+            "KnockoutJS",
+            "Marionette.js",
+            "Polymer",
+            "Angular 2.0",
+            "Dart",
+            "Elm",
+            "Closure",
+            "Vanilla JS",
+            "jQuery",
+            "cujoJS",
+            "Spine",
+            "Dojo",
+            "Mithril",
+            "Kotlin + React",
+            "Firebase + AngularJS",
+            "Vanilla ES6");
+}
 ```
-Ensures that the task inside the lambda expression completes within 2 minutes.
+
 ```java
-Assertions.assertAll(
-    // Multiple assertions
-);
+@ParameterizedTest
+@MethodSource("provideWebTechnologiesMultipleParams")
+public void verifyToDoListCreatedSuccessfully_withMethod(String technology, List<String> itemsToAdd, List<String> itemsToCheck, int expectedLeftItems){
+    driver.navigate().to("https://todomvc.com/");
+    openTechnologyApp(technology);
+    itemsToAdd.stream().forEach(itemToAdd -> addNewToDoItem(itemToAdd));
+    itemsToCheck.stream().forEach(itemToCheck -> getItemCheckbox(itemToCheck).click());
+
+    assertLeftItems(expectedLeftItems);
+}
+
+private Stream<Arguments> provideWebTechnologiesMultipleParams() {
+    return Stream.of(
+            Arguments.of("AngularJS", List.of("Buy Ketchup", "Buy House", "Buy Paper", "Buy Milk", "Buy Batteries"), List.of("Buy Ketchup", "Buy House"), 3),
+            Arguments.of("React", List.of("Buy Ketchup", "Buy House", "Buy Paper", "Buy Milk", "Buy Batteries"), List.of("Buy Paper", "Buy Milk", "Buy Batteries"), 2),
+            Arguments.of("Vue.js", List.of("Buy Ketchup", "Buy House", "Buy Paper", "Buy Milk", "Buy Batteries"), List.of("Buy Paper", "Buy Milk", "Buy Batteries"), 2),
+            Arguments.of("Angular 2.0", List.of("Buy Ketchup", "Buy House", "Buy Paper", "Buy Milk", "Buy Batteries"), List.of(), 5)
+    );
+}
 ```
-This groups multiple assertions together. All of them must pass for the test to pass. It's useful for bundling related assertions.
+
 ```java
-Assertions.assertEquals(expectedDoubleValue, actualDoubleValue, 0.001);
+@ParameterizedTest
+@ArgumentsSource(WebTechnologiesCustomArgumentsProvider.class)
+public void verifyToDoListCreatedSuccessfully_withArgumentSource(String technology, List<String> itemsToAdd, List<String> itemsToCheck, int expectedLeftItems){
+    driver.navigate().to("https://todomvc.com/");
+    openTechnologyApp(technology);
+    itemsToAdd.stream().forEach(itemToAdd -> addNewToDoItem(itemToAdd));
+    itemsToCheck.stream().forEach(itemToCheck -> getItemCheckbox(itemToCheck).click());
+
+    assertLeftItems(expectedLeftItems);
+}
+
+@ParameterizedTest
+@ArgumentsSource(WebTechnologiesCustomArgumentsProvider.class)
+public void verifyToDoListCreatedSuccessfully_withArgumentSourceWithSingleArgument(@AggregateWith(ToDoListAggregator.class) ToDoList toDoList){
+    driver.navigate().to("https://todomvc.com/");
+    openTechnologyApp(toDoList.getTechnology());
+    toDoList.getItemsToAdd().stream().forEach(itemToAdd -> addNewToDoItem(itemToAdd));
+    toDoList.getItemsToCheck().stream().forEach(itemToCheck -> getItemCheckbox(itemToCheck).click());
+
+    assertLeftItems(toDoList.getExpectedItemsLeft());
+}
 ```
-Asserts that two double values are equal within a delta of 0.001. This is important for floating-point comparisons due to precision issues.
+
 ```java
-DateTimeAssert.assertEquals(currentTime, currentTimeInPast, DateTimeDeltaType.MINUTES, 4);
+public class WebTechnologiesCustomArgumentsProvider implements ArgumentsProvider {
+    @Override
+    public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) throws Exception {
+        return Stream.of(
+                Arguments.of("AngularJS", List.of("Buy Ketchup", "Buy House", "Buy Paper", "Buy Milk", "Buy Batteries"), List.of("Buy Ketchup", "Buy House"), 3),
+                Arguments.of("React", List.of("Buy Ketchup", "Buy House", "Buy Paper", "Buy Milk", "Buy Batteries"), List.of("Buy Paper", "Buy Milk", "Buy Batteries"), 2),
+                Arguments.of("Vue.js", List.of("Buy Ketchup", "Buy House", "Buy Paper", "Buy Milk", "Buy Batteries"), List.of("Buy Paper", "Buy Milk", "Buy Batteries"), 2),
+                Arguments.of("Angular 2.0", List.of("Buy Ketchup", "Buy House", "Buy Paper", "Buy Milk", "Buy Batteries"), List.of(), 5)
+        );
+    }
+}
 ```
-This is a custom assertion that checks if two LocalDateTime objects are equal within a tolerance. Here, it checks if currentTime and currentTimeInPast are within 4 minutes of each other.
+
+```java
+@ParameterizedTest
+@CsvSource({"2021-11-21,2021",
+        "2022-01-12,2022"})
+public void verifyYear_whenCustomConverter(@ConvertWith(DashDateConverter.class) LocalDate date, int expected){
+    Assertions.assertEquals(expected, date.getYear());
+}
+```
+
+```java
+public class DashDateConverter implements ArgumentConverter {
+    @Override
+    public Object convert(Object o, ParameterContext parameterContext) throws ArgumentConversionException {
+        if (!(o instanceof String)) {
+            throw new IllegalArgumentException("The argument should be a string: " + o);
+        }
+        try {
+            String[] parts = ((String) o).split("-");
+            int year = Integer.parseInt(parts[0]);
+            int month = Integer.parseInt(parts[1]);
+            int day = Integer.parseInt(parts[2]);
+
+            return LocalDate.of(year, month, day);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Failed to convert", e);
+        }
+    }
+}
+```
