@@ -257,14 +257,14 @@ navigation:
                 title: Troubleshooting – Video Recording
             "execute-tests-grid":
                 title: Execute Tests in a Grid
-            "custom-code":
-                title: Custom
+            # "custom-code":
+            #     title: Custom
             # "execute-tests-crossbrowsertesting":
             #     title: Execute Tests in CrossBrowserTesting
             "add-custom-appium-options":
                 title: Add Custom Appium Capabilities
-            "static-analysis":
-                title: Static Analysis
+            # "static-analysis":
+            #     title: Static Analysis
             "logging":
                 title: Logging
             # "measure-test-execution-times": 
