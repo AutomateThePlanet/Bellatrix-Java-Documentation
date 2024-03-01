@@ -9,12 +9,8 @@ anchors:
   overview: Overview
   simple-installation: Simple Installation
   release-strategy: Release Strategy
-  versioning: Versioning
-  tags-and-releases: Tags and Releases
-  accessing-releases: Accessing Releases
   integrating-bellatrix-as-a-submodule: Integrating BELLATRIX as a Submodule
-  adding-bellatrix-as-a-submodule: Adding BELLATRIX as a Submodule
-  checking-out-a-specific-tag: Checking Out a Specific Tag (Release Version)
+  checking-out-a-specific-tag: Checking Out a Specific Tag
 ---
 Overview
 --------
@@ -36,59 +32,55 @@ Simple Installation
 
 Release Strategy
 --------
+**Versioning**
 
-Versioning
---------
 Our project uses [Semantic Versioning](https://semver.org/) (SemVer) for clear and predictable version management. Each release is tagged with a unique version number that reflects the nature of the changes made.
 
-Tags and Releases
---------
+**Tags and Releases**
 -   **Tags:** We create Git tags for each release to mark specific points in the project's history, making it easier for users to switch between versions.
 -   **Release Notes:** Detailed notes accompany [each release](https://bellatrix.solutions/roadmap/release-3-9-0-0-lyra/), highlighting new features, bug fixes, and any breaking changes.
 
-Accessing Releases
---------
+**Accessing Releases**
+
 Users can access the specific releases directly from our GitHub repository's Releases page or BELLATRIX website's roadmap section. Each release includes a tag, a summary of changes, and assets (if applicable).
 
 Integrating BELLATRIX as a Submodule in Your Project
 --------
-
-Adding BELLATRIX as a Submodule
---------
 To leverage a specific version of BELLATRIX in your project, you can add it as a Git submodule. This allows you to keep your copy of BELLATRIX up to date or locked to a specific version, depending on your project's needs.
 1.  **Navigate to Your Project Directory:** Open a terminal and change to the directory where your project is located.
 2.  **Add BELLATRIX as a Submodule:** Use the following Git command to add BELLATRIX as a submodule to your project:
-    ```
-    git submodule add https://github.com/BELLATRIX-Library/BELLATRIX.git path/to/submodule
-    ``` 
-    Replace `path/to/submodule` with the relative path within your project where you'd like the BELLATRIX submodule to reside.
-    **Initialize and Clone the Submodule:** If you're adding the submodule for the first time, initialize your local configuration file and clone the BELLATRIX repository as follows:
-    ```
-    git submodule update --init --recursive
-    ```
+```
+git submodule add https://github.com/BELLATRIX-Library/BELLATRIX.git path/to/submodule
+``` 
+Replace `path/to/submodule` with the relative path within your project where you'd like the BELLATRIX submodule to reside.
+**Initialize and Clone the Submodule:** If you're adding the submodule for the first time, initialize your local configuration file and clone the BELLATRIX repository as follows:
+```
+git submodule update --init --recursive
+```
 
 Checking Out a Specific Tag (Release Version)
 --------
 After adding BELLATRIX as a submodule, you might want to use a specific release version rather than the latest commit on the main branch.
-1.  **Navigate to the Submodule Directory:** Change into the BELLATRIX submodule directory within your project:
-    ```
-    cd path/to/submodule
-    ```
-2.  **Fetch All Tags from the BELLATRIX Repository:** To ensure you have a list of all available tags, fetch them:
-    ```
-    git fetch --tags
-    ```
-3.  **Checkout the Desired Tag:** Check out the specific tag (release version) you want to use by replacing `<tagname>` with the desired version:
-    ```   
-    git checkout tags/<tagname>` 
-    ```
-    For example, if you want to check out version `v3.9.0.0`, you would use:
-    ```git checkout tags/v3.9.0.0``` 
-
-4.  **Commit the Submodule Change:** Navigate back to your project's root directory, and commit the change to the submodule reference:
-    ```
-    cd ../..
-    git add path/to/submodule
-    git commit -m "Update BELLATRIX submodule to v3.9.0.0"
-    ```
+**Navigate to the Submodule Directory:** Change into the BELLATRIX submodule directory within your project:
+```
+cd path/to/submodule
+```
+**Fetch All Tags from the BELLATRIX Repository:** To ensure you have a list of all available tags, fetch them:
+```
+git fetch --tags
+```
+**Checkout the Desired Tag:** Check out the specific tag (release version) you want to use by replacing `<tagname>` with the desired version:
+```   
+git checkout tags/<tagname>` 
+```
+For example, if you want to check out version `v3.9.0.0`, you would use:
+```
+git checkout tags/v3.9.0.0
+```
+**Commit the Submodule Change:** Navigate back to your project's root directory, and commit the change to the submodule reference:
+```
+cd ../..
+git add path/to/submodule
+git commit -m "Update BELLATRIX submodule to v3.9.0.0"
+```
 This process ensures that your project uses a specific, fixed version of BELLATRIX, providing stability and consistency across environments or deployments.
