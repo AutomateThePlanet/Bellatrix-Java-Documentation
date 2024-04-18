@@ -143,6 +143,10 @@ navigation:
                 title: Extensibility – Add New Component Wait Methods
             "folder-and-file-structure":
                 title: Folder and File Structure
+            "playwright":
+                title: Playwright
+            "selenium-vs-playwright":
+                title: Selenium vs Playwright
     "android-automation":
         title: Android
         submenu:

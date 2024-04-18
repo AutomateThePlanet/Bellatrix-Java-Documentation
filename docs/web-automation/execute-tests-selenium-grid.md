@@ -9,6 +9,7 @@ anchors:
   example: Example
   explanations: Explanations
   configuration: Configuration
+  playwright: Playwright
 ---
 Example
 -------
@@ -55,3 +56,7 @@ You can set the grid URL and set some additional arguments under the **gridSetti
     }
 ]
 ```
+
+Playwright
+-------------
+Playwright supports only Chrome for Selenium Grid execution. Also, in the **ExecutionBrowser**, you cannot add **PlatformType**.

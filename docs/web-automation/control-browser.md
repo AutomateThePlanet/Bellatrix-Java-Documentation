@@ -8,6 +8,7 @@ permalink: /web-automation/control-browser/
 anchors:
   overview: Overview
   explanations: Explanations
+  playwright: Playwright
 ---
 Overview
 --------
@@ -96,3 +97,24 @@ public void blogPageOpened_When_PromotionsButtonClicked() {
 }
 ```
 As mentioned above you can override the browser Lifecycle for a particular test. The global Lifecycle for all tests in the class is to reuse an instance of Firefox browser. Only for this particular test, BELLATRIX opens Chrome and restarts it only on fail.
+
+Playwright
+------------
+Available options for **BrowserTypes** (equivalent to **BrowserType** in selenium module) are:
+- Chromium
+- Chrome
+- Edge
+- Firefox
+- WebKit
+- Chromium in headless mode
+- Chrome in headless mode
+- Edge in headless mode
+- Firefox in headless mode
+- WebKit in headless mode
+
+Available options for **Lifecycle**:
+- **RestartEveryTime**- for each test, a separate **Playwright**, **Browser**, **BrowserContext**, and **Page** instance are created and the previous ones are closed.
+- **RestartOnFail**- the browser is only restarted if the previous test failed or if the previous test's browser was different.
+- **ReuseIfStarted**- the **BrowserContext** and **Page** are closed and new ones are opened. The whole browser is restarted only if the previous test's browser was different.
+
+Be mindful that **BrowserContext** holds information like cookies and session. To restart the **BrowserContext** is equivalent to clear the cookies in Selenium and much more.

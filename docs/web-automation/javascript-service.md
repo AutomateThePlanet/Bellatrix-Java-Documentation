@@ -8,6 +8,7 @@ permalink: /web-automation/javascript-service/
 anchors:
   example: Example
   explanations: Explanations
+  playwright: Playwright
 ---
 Example
 -------
@@ -54,3 +55,17 @@ It is possible to pass an element, and the script executes on it.
 String fontSize = app().script().execute("return arguments[0].style.font-size", resultsCount.getWrappedElement());
 ```
 Get the results from a script. After that, get the value for a specific style and assert it.
+
+Playwright
+------------
+Similar methods are available for the Playwright module, but when performing JavaScript against an element, it is recommended to use **Evaluate** method of **WebComponent** class.
+```java
+float fontSize = (float) webComponent.evaluate("el => el.style.font-size");
+```
+As you can see, you don't need to pass the element as an argument.
+You can also specify the return type.
+
+The same method is available in the **JavaScriptService**, but you still need to write the JS script in the style shown above as internally the service calls the **Evaluate** method of the component.
+```java
+app().script().execute("el => el.click", component);
+```

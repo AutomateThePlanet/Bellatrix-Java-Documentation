@@ -8,6 +8,7 @@ permalink: /web-automation/browser-service/
 anchors:
   example: Example
   explanations: Explanations
+  playwright: Playwright
 ---
 Example
 -------
@@ -109,3 +110,9 @@ To work with elements inside a frame, you should switch to it first. Search for 
 app().browser().switchToDefault();
 ```
 To continue searching in the whole page, you need to switch to default again. It is the same process of how you work with **WebDriver**.
+
+Playwright
+------------
+**maximize** and **minimize** don't work for Playwright.
+
+**switchToDefault** and **switchToFrame** are not necessary, because Bellatrix.Playwright treats iframes as any other element. You have to use **Frame** component.
