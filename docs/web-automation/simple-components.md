@@ -1,10 +1,10 @@
 ---
 layout: default
-title:  "Web Components"
-excerpt: "Learn how to use BELLATRIX web components."
+title:  "Simple Components"
+excerpt: "Learn how to use BELLATRIX simple components."
 date:   2018-06-22 06:50:17 +0200
 parent: web-automation
-permalink: /web-automation/web-components/
+permalink: /web-automation/simple-components/
 anchors:
   example: Example
   explanations: Explanations

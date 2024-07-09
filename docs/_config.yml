@@ -79,10 +79,10 @@ navigation:
                 title: JavaScript Service
             # "interactions-service":
             #     title: Interactions Service
-            "web-components":
-                title: Web Components
-            # "complex-controls":
-            #     title: Complex Controls
+            "simple-components":
+                title: Simple Components
+            "complex-components":
+                title: Complex Components
             "normal-assertions":
                 title: Normal Assertions
             "validate-assertions":
@@ -147,6 +147,8 @@ navigation:
                 title: Playwright
             "selenium-vs-playwright":
                 title: Selenium vs Playwright
+            "shadow-dom":
+                title: Shadow DOM Automation
     "android-automation":
         title: Android
         submenu:
@@ -406,3 +408,11 @@ navigation:
                 title: Email Testing - Mailslurp
             "testmail":
                 title: Email Testing - Testmail
+            "jira-zephyr":
+                title: Jira Zephyr Integration
+            "twilio":
+                title: Twilio Integration
+            "visual-regression-tracker":
+                title: Visual Regression Tracker Integration
+            "healenium":
+                title: Healenium Integration
