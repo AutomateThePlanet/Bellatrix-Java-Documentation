@@ -416,3 +416,5 @@ navigation:
                 title: Visual Regression Tracker Integration
             "healenium":
                 title: Healenium Integration
+            "servicenow":
+                title: ServiceNow Integration
