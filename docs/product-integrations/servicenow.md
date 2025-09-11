@@ -97,12 +97,12 @@ var serviceNowPage = new ServiceNowPage();
 ```
 Creates a new instance of the ServiceNowPage object, which provides access to ServiceNow-specific functionality and page elements
 
-```java
+```javalines
 serviceNowPage.loginSection().login();
 ```
 Performs the initial login to ServiceNow using the configured credentials. This establishes the authenticated session required for impersonation operations
         
-```java
+```javalines
 serviceNowPage.impersonateUser("User Impersonate");
  ```
 Initiates the impersonation process for the specified user. This method:
@@ -110,7 +110,7 @@ Initiates the impersonation process for the specified user. This method:
    - Searches for the target user "User Impersonate"
    - Activates the impersonation session
 
-```java
+```javalines
 serviceNowPage.assertUserImpersonate("User Impersonate");
 ```
 Validates that the impersonation was successful by:
