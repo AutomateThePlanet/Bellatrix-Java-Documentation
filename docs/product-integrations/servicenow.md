@@ -886,19 +886,20 @@ Using these UIB table view testing patterns provides:
 - Verification of data filtering and navigation functionality
 - Ensuring proper popup behavior and state management
 
-# Configuration
+Configuration
+---------------
 
 Before proceeding with Bellatrix ServiceNow module, verify that the following prerequisites are satisfied.
 
-## Prerequisites
+### Prerequisites
 
-### 1. Client Instance of ServiceNow Available
+#### 1. Client Instance of ServiceNow Available
 
 **Instance Options:**
 - **Option 1:** Company live ServiceNow instance
 - **Option 2:** Testing instance provided by ServiceNow
 
-#### Personal Developer Instance (Free)
+##### Personal Developer Instance (Free)
 1. Go to [https://developer.servicenow.com/](https://developer.servicenow.com/)
 2. Click **"Get Started"** or **"Request Instance"**
 3. Create a ServiceNow Developer account (if needed)
@@ -906,7 +907,7 @@ Before proceeding with Bellatrix ServiceNow module, verify that the following pr
 5. You'll receive an email with your instance URL and credentials
 6. The instance remains active for 10 days of inactivity before hibernating
 
-#### Create a User with Admin Rights
+##### Create a User with Admin Rights
 1. Log in with your Developer account
 2. Open the **Navigation menu** (click **All** if not visible)
 3. Filter for: `sys_user.list` and press Enter
@@ -917,15 +918,15 @@ Before proceeding with Bellatrix ServiceNow module, verify that the following pr
    * Type `admin` in the **Collection**
    * Add `admin` to the **Role List** and click **Save**
 
-#### Optional: Create one more user for Impersonate tests
+##### Optional: Create one more user for Impersonate tests
 
 ---
 
-### 2. Update the Config File
+#### 2. Update the Config File
 
 **Path:** `src/main/resources/testFrameworkSettings.dev.json`
 
-#### Modify the following in `serviceNowProjectSettings`:
+##### Modify the following in `serviceNowProjectSettings`:
 
 - **Instance:**
     ```jsonlines
@@ -963,7 +964,7 @@ Before proceeding with Bellatrix ServiceNow module, verify that the following pr
     - `servicenow-password-instance`
 
 ---
-### 3. Set Environment
+#### 3. Set Environment
 
 In the file `src/main/resources/application.properties set:
 ```properties
