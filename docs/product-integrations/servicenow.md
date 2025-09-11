@@ -7,21 +7,25 @@ parent: product-integrations
 permalink: /product-integrations/servicenow/
 anchors:
   what-is-servicenow: What Is ServiceNow?
-  usage: Usage
+  usage-login-to-servicenow-instance: Usage - Login to ServiceNow instance
+  usage-user-impersonation-in-servicenow: Usage - User Impersonation in ServiceNow
+  usage-serviceNow-record-form: Usage - ServiceNow Record Form
+  usage-working-with-serviceNow-table-view: Usage - Working with ServiceNow Table View
+  usage-left-navigation-in-servicenow: Usage - Left Navigation in ServiceNow
+  usage-servicenow-data-creation: Usage - ServiceNow Data Creation
+  usage-uib-dashboard-record-view-table-view: Usage - UIB Dashboard, Record View, Table View
   config: Configuration
 ---
-
-# What is ServiceNow?
-
+What is ServiceNow?
+------------------
 **ServiceNow** is a cloud-based platform used by many organizations across different industries to manage workflows and services.
 BELLATRIX ServiceNow module offers ready for testing serviceNow based applications.
 The page presents the examples of what this module offers.
 
-# Usage
+Usage - Login to ServiceNow instance
+------------------
 
 The following section presents comprehensive test scenarios for common ServiceNow application use cases.
-
-## Login to ServiceNow instance
 
 ### Example
 
@@ -65,8 +69,9 @@ Using configuration-based credentials is recommended for:
 - Easier credential management across different environments
 - Better security practices in version control systems
 
-## User Impersonation in ServiceNow
 
+Usage - User Impersonation in ServiceNow
+------------------
 This guide demonstrates how to implement automated user impersonation functionality for ServiceNow instances using the BELLATRIX framework. User impersonation allows administrators and authorized users to temporarily assume the identity of another user for testing, troubleshooting, or administrative purposes.
 
 ### Example
@@ -127,10 +132,10 @@ Validates that the impersonation was successful by:
 
 The test validates both the technical functionality of impersonation and serves as a foundation for more complex user permission and role-based testing scenarios.
 
+Usage - ServiceNow Record Form
+------------------
 
-## ServiceNow Record Form Operations
-
-### Example
+### Examples Open Record form
 
 #### Open Record from Table
 
@@ -177,7 +182,7 @@ public void newRecordFormOpen_when_clickNewButton () {
 }
 ```
 
-### Explanations
+### Explanations Open Record form
 
 ***Open Record from Table***
 
@@ -197,9 +202,7 @@ Using these record form operations enables:
 - New record creation testing
 - Proper form state validation for both existing and new records
 
-## ServiceNow Record Form Sub-tabs Operations
-
-### Example
+### Examples Record Form Sub-tabs Operations
 
 #### Verify Sub-tabs Presence
 
@@ -265,7 +268,7 @@ public void newRecordFormOpen_when_clickNewButtonForTheSelectedBottomTableTab() 
 }
 ```
 
-### Explanations
+### Explanations Record Form Sub-tabs Operations
 
 #### Verify Sub-tabs Presence
 
@@ -297,7 +300,8 @@ This test verifies the ability to create new records directly from sub-tabs. It 
 - Confirms new record forms open with correct headers
 - Tests critical functionality for incident management processes
 
-## Working with ServiceNow Table View
+Usage - Working with ServiceNow Table View
+------------------
 
 ### Example
 
@@ -386,7 +390,8 @@ The tests demonstrate how to search for specific records within the ServiceNow t
 
 This functionality is essential for quickly locating specific incidents in large datasets.
 
-## Left Navigation in ServiceNow
+Usage - Left Navigation in ServiceNow
+------------------
 
 ### Example
 
@@ -452,7 +457,8 @@ Using left navigation tests is recommended for:
 - Verifying that menu items lead to the correct pages and functionality
 - Testing user experience consistency in ServiceNow applications
 
-## ServiceNow Data Creation Tests
+Usage - ServiceNow Data Creation
+------------------
 
 ### Example
 
@@ -577,9 +583,10 @@ Using the BELLATRIX ServiceNow data creation module is recommended for:
 - Entity lifecycle management in test scenarios
 - Integration testing with ServiceNow instances
 
-## UIB Dashboard Navigation Examples
+Usage - UIB Dashboard, Record View, Table View
+------------------
 
-### Example
+### Examples UIB Dashboard
 
 #### Open Workspace Dashboard Test
 
@@ -622,7 +629,7 @@ public void dashboardComponentCardTest() {
 }
 ```
 
-### Explanations
+### Explanations UIB Dashboard
 
 ***Open Workspace Dashboard Test***
 
@@ -653,9 +660,7 @@ Using component card navigation is recommended for:
 
 These tests provide comprehensive coverage of the Manager Workspace navigation patterns, ensuring reliable access to work order management functionality within ServiceNow's UIB interface. The tests validate both the workspace initialization and the multi-step navigation flows that users commonly perform when managing work orders.
 
-## UIB Record View Examples
-
-### Example
+### Examples UIB Record View
 
 #### Open and Verify Record Form
 
@@ -717,7 +722,7 @@ public void fillRecordForm() {
 }
 ```
 
-### Explanations
+### Explanations UIB Record View
 
 ***Open and Verify Record Form***
 
@@ -745,9 +750,7 @@ Using the TemplateModel builder pattern provides:
 - Clear separation between test logic and test data
 - Improved maintainability when form structures change---
 
-## UIB Table View Examples
-
-### Example
+### Examples UIB Table View
 
 #### Table Refresh Test
 ```java
@@ -853,7 +856,7 @@ public void openRecordByColumnValue() {
 }
 ```
 
-### Explanations
+### Explanations UIB Table View
 
 #### Table Refresh Test Explanation
 This test verifies that the table refresh functionality works correctly within the ServiceNow workspace manager. This is essential for validating that data updates are properly reflected in the UI.
@@ -883,7 +886,7 @@ Using these UIB table view testing patterns provides:
 - Verification of data filtering and navigation functionality
 - Ensuring proper popup behavior and state management
 
-# Config
+# Configuration
 
 Before proceeding with Bellatrix ServiceNow module, verify that the following prerequisites are satisfied.
 
