@@ -17,13 +17,13 @@ anchors:
   config: Configuration
 ---
 What is ServiceNow?
-------------------
+---------------
 **ServiceNow** is a cloud-based platform used by many organizations across different industries to manage workflows and services.
 BELLATRIX ServiceNow module offers ready for testing serviceNow based applications.
 The page presents the examples of what this module offers.
 
 Usage - Login to ServiceNow instance
-------------------
+---------------
 
 The following section presents comprehensive test scenarios for common ServiceNow application use cases.
 
@@ -71,7 +71,7 @@ Using configuration-based credentials is recommended for:
 
 
 Usage - User Impersonation in ServiceNow
-------------------
+---------------
 This guide demonstrates how to implement automated user impersonation functionality for ServiceNow instances using the BELLATRIX framework. User impersonation allows administrators and authorized users to temporarily assume the identity of another user for testing, troubleshooting, or administrative purposes.
 
 ### Example
@@ -133,7 +133,7 @@ Validates that the impersonation was successful by:
 The test validates both the technical functionality of impersonation and serves as a foundation for more complex user permission and role-based testing scenarios.
 
 Usage - ServiceNow Record Form
-------------------
+---------------
 
 ### Examples Open Record form
 
@@ -301,7 +301,7 @@ This test verifies the ability to create new records directly from sub-tabs. It 
 - Tests critical functionality for incident management processes
 
 Usage - Working with ServiceNow Table View
-------------------
+---------------
 
 ### Example
 
@@ -391,7 +391,7 @@ The tests demonstrate how to search for specific records within the ServiceNow t
 This functionality is essential for quickly locating specific incidents in large datasets.
 
 Usage - Left Navigation in ServiceNow
-------------------
+---------------
 
 ### Example
 
@@ -458,7 +458,7 @@ Using left navigation tests is recommended for:
 - Testing user experience consistency in ServiceNow applications
 
 Usage - ServiceNow Data Creation
-------------------
+---------------
 
 ### Example
 
@@ -584,7 +584,7 @@ Using the BELLATRIX ServiceNow data creation module is recommended for:
 - Integration testing with ServiceNow instances
 
 Usage - UIB Dashboard, Record View, Table View
-------------------
+---------------
 
 ### Examples UIB Dashboard
 
@@ -920,8 +920,6 @@ Before proceeding with Bellatrix ServiceNow module, verify that the following pr
 
 ##### Optional: Create one more user for Impersonate tests
 
----
-
 #### 2. Update the Config File
 
 **Path:** `src/main/resources/testFrameworkSettings.dev.json`
@@ -963,7 +961,6 @@ Before proceeding with Bellatrix ServiceNow module, verify that the following pr
     - `servicenow-username-instance`
     - `servicenow-password-instance`
 
----
 #### 3. Set Environment
 
 In the file `src/main/resources/application.properties set:
