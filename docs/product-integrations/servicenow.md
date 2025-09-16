@@ -9,12 +9,12 @@ anchors:
   what-is-servicenow: What Is ServiceNow?
   usage---login-to-servicenow-instance: Usage - Login to ServiceNow instance
   usage---user-impersonation-in-servicenow: Usage - User Impersonation in ServiceNow
-  usage---serviceNow-record-form: Usage - ServiceNow Record Form
-  usage---working-with-serviceNow-table-view: Usage - Working with ServiceNow Table View
+  usage---servicenow-record-form: Usage - ServiceNow Record Form
+  usage---working-with-servicenow-table-view: Usage - Working with ServiceNow Table View
   usage---left-navigation-in-servicenow: Usage - Left Navigation in ServiceNow
   usage---servicenow-data-creation: Usage - ServiceNow Data Creation
   usage---uib-dashboard-record-view-table-view: Usage - UIB Dashboard, Record View, Table View
-  config: Configuration
+  config: Config
 ---
 What is ServiceNow?
 ------------------
