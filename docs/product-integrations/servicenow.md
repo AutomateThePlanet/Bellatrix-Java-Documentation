@@ -886,7 +886,7 @@ Using these UIB table view testing patterns provides:
 - Verification of data filtering and navigation functionality
 - Ensuring proper popup behavior and state management
 
-Configuration
+Config
 ------------------
 
 Before proceeding with Bellatrix ServiceNow module, verify that the following prerequisites are satisfied.
