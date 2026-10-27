@@ -245,11 +245,11 @@ navigation:
                 title: Touch Actions Service
             "web-service":
                 title: Web Service
-            "ios-components":
+            "common-controls":
                 title: iOS Components
             "normal-assertions":
                 title: Normal Assertions
-            "validate-assertions":
+            "Validate-assertions":
                 title: Validate Assertions
             "bdd-logging":
                 title: BDD Logging
@@ -261,8 +261,6 @@ navigation:
                 title: Troubleshooting – Screenshots on Fail
             "troubleshooting-video-recording":
                 title: Troubleshooting – Video Recording
-            "execute-tests-grid":
-                title: Execute Tests in a Grid
             # "custom-code":
             #     title: Custom
             # "execute-tests-crossbrowsertesting":
@@ -285,13 +283,13 @@ navigation:
             #     title: Extensibility – Common Services Action Hooks
             # "extensibility-extend-existing-components-extension-methods":
             #     title: Extensibility – Extend Components Extension Methods
-            "extensibility-extend-existing-components-child-components":
+            "extensibility-extend-existing-elements-child-elements":
                 title: Extensibility – Extend Components
             "extensibility-extend-common-services":
                 title: Extensibility – Extend Common Services
             "extensibility-add-new-find-locators": 
                 title: Extensibility – Add New Find Locators
-            "extensibility-add-new-component-wait-methods":
+            "extensibility-add-new-element-wait-methods":
                 title: Extensibility – Add New Component Wait Methods
             "folder-and-file-structure":
                 title: Folder and File Structure
@@ -300,11 +298,11 @@ navigation:
         submenu:
             "control-app":
                 title: Control App
-            "locate-components":
+            "locate-elements":
                 title: Locate Components
-            "locate-and-wait-components":
+            "locate-and-wait-elements":
                 title: Locate and Wait Components
-            "wait-for-components":
+            "wait-for-elements":
                 title: Wait for Components
             "app-service":
                 title: AppService
@@ -312,7 +310,7 @@ navigation:
                 title: Common Controls
             "normal-assertions":
                 title: Normal Assertions
-            "validate-assertions":
+            "Validate-assertions":
                 title: Validate Assertions
             "bdd-logging":
                 title: BDD Logging
@@ -338,19 +336,19 @@ navigation:
                 title: Extensibility – Plugin Hooks
             "extensibility-custom-test-workflow-plugins":
                 title: Extensibility – Plugins
-            "extensibility-component-action-hooks":
+            "extensibility-element-action-hooks":
                 title: Extensibility – Component Action Hooks
             "extensibility-common-services-action-hooks":
                 title: Extensibility – Common Services Action Hooks
-            "extensibility-extend-existing-components-extension-methods":
+            "extensibility-extend-existing-elements-extension-methods":
                 title: Extensibility – Extend Components Extension Methods
-            "extensibility-extend-existing-components-child-components":
+            "extensibility-extend-existing-elements-child-elements":
                 title: Extensibility – Extend Components Child Components
             "extensibility-extend-common-services":
                 title: Extensibility – Extend Common Services
             "extensibility-add-new-find-locators": 
                 title: Extensibility – Add New Find Locators
-            "extensibility-add-new-component-wait-methods":
+            "extensibility-add-new-element-wait-methods":
                 title: Extensibility – Add New Component Wait Methods
             "folder-and-file-structure":
                 title: Folder and File Structure

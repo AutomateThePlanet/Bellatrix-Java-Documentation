@@ -17,27 +17,27 @@ The two projects, Bellatrix.Web and Bellatrix.Playwright, have a similar structu
 
 In this documentation, you will find information in every page for both, if there are any differences between the two. Otherwise you can assume the content is identical for both and there was no need to write anything more about Bellatrix.Playwright.
 
-To get insight to with what the Bellatrix module contributes to the native Playwright, [**Learn more here**](playwright).
+To get insight to with what the Bellatrix module contributes to the native Playwright, [**Learn more here**](playwright/).
 
-In case you are wondering which one to use, you can [**Learn more**](selenium-vs-playwright) about both engines.
+In case you are wondering which one to use, you can [**Learn more**](selenium-vs-playwright/) about both engines.
 
 ### Wait for Components ###
-Perform an action against an element only when a specific condition is true. Waits for the element to exist or not, to be visible, clickable, disabled. [**Learn more**](/wait-for-components.md).
+Perform an action against an element only when a specific condition is true. Waits for the element to exist or not, to be visible, clickable, disabled. [**Learn more**](wait-for-components/).
 
 ### Cookies Service ###
-You need to make sure that you have navigated to the desired web page. Get all cookies, Get a specific cookie by name, Delete all cookies, Delete a specific cookie by name. Add a new cookie. [**Learn more**](cookies-service).
+You need to make sure that you have navigated to the desired web page. Get all cookies, Get a specific cookie by name, Delete all cookies, Delete a specific cookie by name. Add a new cookie. [**Learn more**](cookies-service/).
 
 ### 30+ Web Components ###
 Includes only the actions that you should be able to do with the specific componet and nothing more.
-[**Learn more**](web-components).
+[**Learn more**](simple-components/).
 
 ### Web Extendability ###
 Execute your code on each element action, add additional logic to core framework methods and easily set anything to file configuration. Check all extensibility options:
 
-- [**Plugin hooks**](extensibility-test-workflow-hooks)
-- [**Plugins**](extensibility-custom-test-workflow-plugins)
-- [**Component action hooks**](extensibility-component-action-hooks)
-- [**Extend existing components**](extensibility-extend-existing-components)
+- [**Plugin hooks**](extensibility-test-workflow-hooks/)
+- [**Plugins**](extensibility-custom-test-workflow-plugins/)
+- [**Component action hooks**](extensibility-component-action-hooks/)
+- [**Extend existing components**](extensibility-extend-existing-components/)
 
 
 
