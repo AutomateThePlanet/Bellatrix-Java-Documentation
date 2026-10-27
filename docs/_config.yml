@@ -56,6 +56,9 @@ navigation:
                 title: System Requirements
             "contributing":
                 title: Contributing
+    "use-with-ai-agents":
+        title: Use with AI Agents
+        submenu:
     "web-automation":
         title: Web
         submenu:
